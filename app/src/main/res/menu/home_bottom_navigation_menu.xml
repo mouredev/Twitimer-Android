@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/home_menu_countdown"
+        android:icon="@drawable/calendar_clock"
+        android:title="" />
+    <item
+        android:id="@+id/home_menu_search"
+        android:icon="@drawable/search"
+        android:title="" />
+    <item
+        android:id="@+id/home_menu_account"
+        android:icon="@drawable/user"
+        android:title="" />
+</menu>

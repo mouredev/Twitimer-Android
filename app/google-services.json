@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "UNDEFINED",
+    "firebase_url": "UNDEFINED",
+    "project_id": "UNDEFINED",
+    "storage_bucket": "UNDEFINED"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "UNDEFINED",
+        "android_client_info": {
+          "package_name": "UNDEFINED"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "UNDEFINED",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "UNDEFINED"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "UNDEFINED",
+              "client_type": 3
+            },
+            {
+              "client_id": "UNDEFINED",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "UNDEFINED"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

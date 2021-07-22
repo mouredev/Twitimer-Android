@@ -1,0 +1,26 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Theme.Twitimer" parent="Theme.MaterialComponents.DayNight">
+
+        <item name="colorSurface">@color/primary</item>
+        <item name="colorOnSurface">@color/primary</item>
+        <item name="android:colorBackground">@color/primary</item>
+        <item name="colorOnBackground">@color/primary</item>
+
+        <!-- Primary color -->
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorPrimaryVariant">@color/primary</item>
+        <item name="colorOnPrimary">@color/dark</item>
+
+        <!-- Secondary color -->
+        <item name="colorSecondary">@color/secondary</item>
+        <item name="colorSecondaryVariant">@color/secondary</item>
+        <item name="colorOnSecondary">@color/light</item>
+
+        <!-- Status bar -->
+        <item name="android:statusBarColor" tools:targetApi="l">@color/primary</item>
+        <item name="android:navigationBarColor" tools:targetApi="l">@color/primary</item>
+        <item name="android:homeAsUpIndicator">@drawable/keyboard_arrow_left</item>
+    </style>
+
+</resources>

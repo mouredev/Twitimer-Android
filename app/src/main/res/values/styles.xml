@@ -1,0 +1,43 @@
+<resources>
+
+    <style name="CustomDialogTheme" parent="Theme.MaterialComponents.DayNight.Dialog.Alert">
+        <item name="android:windowBackground">@color/secondary</item>
+        <item name="colorAccent">@color/primary</item>
+        <item name="android:textColorPrimary">@color/light</item>
+    </style>
+
+    <style name="CustomDatePickerTheme" parent="Theme.AppCompat.Light.Dialog">
+        <item name="colorPrimary">@color/light</item>
+        <item name="colorPrimaryDark">@color/light</item>
+        <item name="colorAccent">@color/primary</item>
+        <item name="android:windowBackground">@color/background</item>
+        <item name="android:textColor">@color/text</item>
+        <item name="android:textColorPrimary">@color/text</item>
+        <item name="android:textColorSecondary">@color/text</item>
+        <item name="android:buttonBarNegativeButtonStyle" >@style/NegativeButtonStyle</item>
+        <item name="android:buttonBarPositiveButtonStyle">@style/NegativeButtonStyle</item>
+    </style>
+
+    <style name="CustomTimePickerTheme" parent="ThemeOverlay.MaterialComponents.TimePicker">
+        <item name="android:buttonBarNegativeButtonStyle">@style/LightButtonStyle</item>
+        <item name="android:buttonBarPositiveButtonStyle">@style/LightButtonStyle</item>
+        <item name="android:title">@style/LightButtonStyle</item>
+    </style>
+
+    <style name="LightButtonStyle" parent="Widget.AppCompat.Button.ButtonBar.AlertDialog">
+        <item name="android:textColor">@color/light</item>
+    </style>
+
+    <style name="NegativeButtonStyle" parent="Widget.AppCompat.Button.ButtonBar.AlertDialog">
+        <item name="android:textColor">@color/text</item>
+    </style>
+
+    <style name="CustomSwitchStyle" parent="Theme.AppCompat.Light">
+        <item name="colorAccent">@color/primary</item>
+    </style>
+
+    <style name="CustomSpinnerTheme">
+        <item name="android:textColor">@color/light</item>
+    </style>
+
+</resources>

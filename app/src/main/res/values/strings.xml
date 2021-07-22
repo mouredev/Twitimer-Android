@@ -1,0 +1,100 @@
+<resources>
+
+    <!-- Generic -->
+    <string name="app_name">Twitimer</string>
+    <string name="title">Twitimer</string>
+    <string name="accept">Accept</string>
+    <string name="cancel">Cancel</string>
+    <string name="understood">Understood</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <!-- Onboarding -->
+    <string name="onboarding.page0.title">Welcome to Twitimer</string>
+    <string name="onboarding.page0.body">The App that helps you manage your broadcast schedules and those of your favorite streamers on Twitch.</string>
+    <string name="onboarding.page1.title">Are you a streamer?</string>
+    <string name="onboarding.page1.body">Log in with your Twitch account and configure your broadcast schedules. You will be able to define your weekly schedule and create specific events.\n\nEach time you modify the schedules your followers on Twitimer will receive a notification.</string>
+    <string name="onboarding.page2.title">Do you follow other streamers?</string>
+    <string name="onboarding.page2.body">You can follow your favorite creators to know at all times the schedule and order of broadcast of each one of them.\n\nIf you log in with your Twitch user, your favorite streamers will be associated with your account so that you can use Twitimer on multiple devices. You will receive a notification when the schedules are updated.</string>
+    <string name="onboarding.page3.title">Take a look</string>
+    <string name="onboarding.page3.body">Once you follow streamers you will see a countdown to know when the next broadcast of each of them will be. You will never miss a live show again.</string>
+    <string name="onboarding.page4.title">Ready?</string>
+    <string name="onboarding.page4.body">Twitimer is an App created to help Twitch users. Help me by sharing it and telling your favorite streamers about it so they can add their broadcast schedule to it.\n\nAny feedback to improve it is welcome. I hope you find it very useful!</string>
+
+    <!-- Search -->
+    <string name="search">Search</string>
+    <string name="search.channel">Channel</string>
+    <string name="search.followedchannels">Followed channels</string>
+    <string name="search.bar.placeholder">Twitch channel name</string>
+    <string name="search.maxstreamers.alert.title">You cannot add more channels to your list</string>
+    <string name="search.maxstreamers.alert.body">You must remove one first.\n\nTwitimer is a free app created to help the community. Collaborate by shared it so that it can expand the limit. Thanks!</string>
+    <string name="search.removestreamer.alert.title">Stop following %s</string>
+    <string name="search.removestreamer.alert.body">You will no longer be able to check their future broadcasts nor will you receive notifications when a schedule changes.</string>
+
+    <!-- Countdown -->
+    <string name="countdown.upcoming">Upcoming broadcasts</string>
+    <string name="countdown.reload">Update schedules</string>
+    <string name="countdown.live">Live</string>
+    <string name="countdown.day">day</string>
+    <string name="countdown.days">days</string>
+
+    <!-- Schedule -->
+    <string name="schedule">Schedule</string>
+    <string name="schedule.save">Save schedule</string>
+    <string name="schedule.0">One-off event</string>
+    <string name="schedule.1">Monday</string>
+    <string name= "schedule.2">Tuesday</string>
+    <string name="schedule.3">Wednesday</string>
+    <string name="schedule.4">Thursday</string>
+    <string name="schedule.5">Friday</string>
+    <string name="schedule.6">Saturday</string>
+    <string name="schedule.7">Sunday</string>
+    <string name="schedule.event.placeholder">Describe the event…</string>
+
+    <!-- User -->
+    <string name="user.closesession">Log out</string>
+    <string name="user.closesession.alert.body">Are you sure you want to log out?</string>
+    <string name="user.saveschedule.alert.body">If you save these new schedules, your viewers will be notified.</string>
+    <string name="user.seechannel">See channel</string>
+    <string name="user.streamer">I\'m streamer</string>
+    <string name="user.syncschedule.alert.title">Synchronize Twitch schedule</string>
+    <string name="user.syncschedule.alert.body">Do you want to sync your recurring Twitch calendar? The Twitimer schedule will be overwritten.</string>
+
+    <!-- Info -->
+
+    <string name="info.countdown.title">You still do not follow any channel</string>
+    <string name="info.countdown.body">Here you can see the time remaining for the next broadcast and check the schedules</string>
+    <string name="info.countdown.advice.1">Search channels</string>
+
+    <string name="info.search.title">Enter the name of the Twitch channel</string>
+    <string name="info.search.body">It corresponds to the final text of the url twitch.tv/[channel]</string>
+    <string name="info.search.advice.1">Add the channel to your list. You can add a total of 20 (at the moment).</string>
+    <string name="info.search.advice.2">Remove the channel from your list if you have already added it before.</string>
+
+    <string name="info.channel.title">Can\'t find the channel?</string>
+    <string name="info.channel.body">%s may not have signed up for Twitimer yet.\nWould you like to invite him?</string>
+    <string name="info.channel.advice.1">Help me by talking about Twitimer to your favorite streamers. This way they will be able to add their schedules so that you can check them from the App.</string>
+    <string name="info.channel.share">Hello @[%s]! Do you know #Twitimer?\n\nIt is an App for streamers to add their broadcast schedules on Twitch and notify their audience every time they do.\n\nIt can be downloaded for iOS and Android for free from https://twitimer.com\n\nThank you!</string>
+
+    <string name="info.streamer.title">Are you a streamer?</string>
+    <string name="info.streamer.body">If you make live broadcasts, activate the option \"I\'m streamer\" to configure your schedules and notify viewers.</string>
+    <string name="info.streamer.advice.1">Set, update and save the schedules of your weekly broadcasts and specific events.</string>
+
+    <string name="info.auth.title">Log in securely with your Twitch account</string>
+    <string name="info.auth.body">If you are a streamer you need to log in with your Twitch account in order to manage your schedules and share them with App users.\n\nEven if you are not a streamer, I recommend you log in to save your Twitimer configuration, synchronize it between devices, search streamers more easily and receive notifications every time a channel updates its schedules.</string>
+    <string name="info.auth.advice.1">Log in</string>
+
+    <string name="info.schedule.title">There are no schedules</string>
+    <string name="info.schedule.body">The streamer does not have available schedules. He may not have added them Twitimer yet (or he may be on holidays).</string>
+    <string name="info.schedule.advice.1">Try checking them out later. When the streamer has a schedule, a countdown will appear in the list of upcoming broadcasts.</string>
+
+    <!-- Menu -->
+
+    <string name="menu.by">by</string>
+    <string name="menu.info">Hi! My name is Brais Moure, I\'m the Twitimer creator.\n\nThis App has been developed to help Twitch users, but especially thinking about generating educational content for the entire community of programmers interested in the world of apps development for mobile devices. They have made the project possible (I want it to be a free and constantly evolving App).\n\nIf you want to join our community, leave me some kind of suggestion to improve, or support the continuity of the project (a few bits never hurt to pay for the server…), you can find me on Twitch and other social networks as @mouredev.\n\nThank you very much!</string>
+
+    <string name="menu.site">Visit twitimer.com to check all the official information</string>
+    <string name="menu.onboarding">Visualize the welcome tutorial again</string>
+    <string name="menu.version">Version %s. Twitimer has no relationship with Twitch Interactive, Inc. and all of its services.</string>
+
+</resources>

@@ -1,0 +1,98 @@
+<resources>
+
+    <!-- Generic -->
+    <string name="app_name">Twitimer</string>
+    <string name="title">Twitimer</string>
+    <string name="accept">Aceptar</string>
+    <string name="cancel">Cancelar</string>
+    <string name="understood">Entendido</string>
+    <string name="next">Siguiente</string>
+    <string name="previous">Anterior</string>
+
+    <!-- Onboarding -->
+    <string name="onboarding.page0.title">Bienvenido a Twitimer</string>
+    <string name="onboarding.page0.body">La App que te ayuda a gestionar tus horarios de emisión y los de tus streamers favoritos en Twitch.</string>
+    <string name="onboarding.page1.title">¿Eres streamer?</string>
+    <string name="onboarding.page1.body">Haz login con tu cuenta de Twitch y configura tus horarios de emisión. Podrás definir tu horario semanal y crear eventos puntuales.\n\nCada vez que modifiques los horarios tus seguidores en Twitimer recibirán una notificación.</string>
+    <string name="onboarding.page2.title">¿Sigues a otros streamers?</string>
+    <string name="onboarding.page2.body">Puedes seguir a tus creadores favoritos para saber en todo momento el horario y orden de emisión de cada uno de ellos.\n\nSi haces login con tu usuario de Twitch, tus streamers favoritos quedarán asociados a tu cuenta para que así puedas usar Twitimer en varios dispositivos. Recibirás una notificación cuando se actualicen los horarios.</string>
+    <string name="onboarding.page3.title">De un vistazo</string>
+    <string name="onboarding.page3.body">Una vez sigas a streamers podrás ver una cuenta atrás para consultar cuando será la próxima emisión de cada uno de ellos. No volverás a perderte un directo.</string>
+    <string name="onboarding.page4.title">¿Preparado?</string>
+    <string name="onboarding.page4.body">Twitimer es una App creada para ayudar a los usuarios de Twitch. Ayúdame compartiéndola y hablándole a tus streamers favoritos de ella para que añadan su horario de transmisiones en ella.\n\nCualquier feedback para mejorarla es bienvenido. ¡Espero que te resulte muy útil!</string>
+
+    <!-- Search -->
+    <string name="search">Buscar</string>
+    <string name="search.channel">Canal</string>
+    <string name="search.followedchannels">Canales seguidos</string>
+    <string name="search.bar.placeholder">Nombre del canal de Twitch</string>
+    <string name="search.maxstreamers.alert.title">No puedes añadir más canales a tu lista</string>
+    <string name="search.maxstreamers.alert.body">Debes eliminar primero uno.\n\nTwitimer es una app gratuita creada para ayudar a la comunidad. Colabora dándola a conocer para que pueda ampliar el límite. ¡Gracias!</string>
+    <string name="search.removestreamer.alert.title">Dejar de seguir a %s</string>
+    <string name="search.removestreamer.alert.body">Ya no podrás consultar sus futuras emisiones ni recibirás notificaciones cuando modifique un horario.</string>
+
+    <!-- Countdown -->
+    <string name="countdown.upcoming">Próximas emisiones</string>
+    <string name="countdown.reload">Actualizar horarios</string>
+    <string name="countdown.live">En directo</string>
+    <string name="countdown.day">día</string>
+    <string name="countdown.days">días</string>
+
+    <!-- Schedule -->
+    <string name="schedule">Calendario</string>
+    <string name="schedule.save">Guardar calendario</string>
+    <string name="schedule.0">Evento puntual</string>
+    <string name="schedule.1">Lunes</string>
+    <string name="schedule.2">Martes</string>
+    <string name="schedule.3">Miércoles</string>
+    <string name="schedule.4">Jueves</string>
+    <string name="schedule.5">Viernes</string>
+    <string name="schedule.6">Sábado</string>
+    <string name="schedule.7">Domingo</string>
+    <string name="schedule.event.placeholder">Describe el evento…</string>
+
+    <!-- User -->
+    <string name="user.closesession">Cerrar sesión</string>
+    <string name="user.closesession.alert.body">¿Estás seguro de que quieres cerrar sesión?</string>
+    <string name="user.saveschedule.alert.body">Si guardas estos nuevos horarios se notificará a tus espectadores.</string>
+    <string name="user.seechannel">Ver canal</string>
+    <string name="user.streamer">Soy streamer</string>
+    <string name="user.syncschedule.alert.title">Sincronizar horario de Twitch</string>
+    <string name="user.syncschedule.alert.body">¿Quieres sincronizar tu calendario recurrente de Twitch? Se sobrescribirá la programación de Twitimer.</string>
+
+    <!-- Info -->
+
+    <string name="info.countdown.title">Aún no sigues a ningún canal</string>
+    <string name="info.countdown.body">Aquí podrás visualizar el tiempo restante para la próxima emisión y consultar los horarios</string>
+    <string name="info.countdown.advice.1">Buscar canales</string>
+
+    <string name="info.search.title">Introduce el nombre del canal de Twitch</string>
+    <string name="info.search.body">Se corresponde con el texto final de la url twitch.tv/[canal]</string>
+    <string name="info.search.advice.1">Añade el canal a tu listado. Puedes añadir un total de 20 (por el momento).</string>
+    <string name="info.search.advice.2">Elimina el canal de tu listado si ya lo habías añadido con anterioridad.</string>
+
+    <string name="info.channel.title">¿No encuentras el canal?</string>
+    <string name="info.channel.body">Es posible que %s aún no se haya registrado en Twitimer.\n¿Te gustaría invitarlo?</string>
+    <string name="info.channel.advice.1">Ayúdame hablándole a tus streamers favoritos de Twitimer. Así podrán añadir sus horarios para que los puedas consultar desde la App.</string>
+    <string name="info.channel.share">¡Hola @[%s]! ¿Conoces #Twitimer?\n\nEs una App para que los streamers puedan añadir sus horarios de emisión en Twitch y notificar a su audiencia cada vez que hagan.\n\nSe puede descargar para iOS y Android de forma gratuita desde https://twitimer.com\n\n¡Gracias!</string>
+
+    <string name="info.streamer.title">¿Eres streamer?</string>
+    <string name="info.streamer.body">Si realizas transmisiones en directo activa la opción \"Soy streamer\" para configurar tus horarios y notificar a los espectadores.</string>
+    <string name="info.streamer.advice.1">Establece, actualiza y guarda los horarios de tus transmisiones semanales y eventos puntuales.</string>
+
+    <string name="info.auth.title">Inicia sesión de forma segura con tu cuenta de Twitch</string>
+    <string name="info.auth.body">Si eres streamer necesitas iniciar sesión con tu cuenta de Twitch para así poder gestionar tus horarios y compartirlos con los usuarios de la App.\n\nAunque no seas streamer te recomiendo iniciar sesión para poder guardar tu configuración de Twitimer, sincronizarla entre dispositivos, buscar streamers de forma más sencilla y recibir notificaciones cada vez que un canal actualice sus horarios de emisión.</string>
+    <string name="info.auth.advice.1">Iniciar sesión</string>
+
+    <string name="info.schedule.title">No hay horarios</string>
+    <string name="info.schedule.body">El streamer no tiene horarios disponibles. Puede que aún no los haya añadido desde Twitimer (o quizá se está tomando unas vacaciones).</string>
+    <string name="info.schedule.advice.1">Prueba a revisarlos más tarde. Cuando tenga algún horario aparecerá una cuenta atrás en el listado de próximas emisiones.</string>
+
+    <!-- Menu -->
+    <string name="menu.by">por</string>
+    <string name="menu.info">¡Hola! Mi nombre es Brais Moure, soy el creador de Twitimer.\n\nEsta App se ha desarrollado para ayudar a usuarios de Twitch, pero sobre todo pensando en generar contenido formativo para toda la comunidad de programadores y programadoras interesada en el mundo del desarrollo de apps para dispositivos móviles. Ellos han hecho posible el proyecto (ante todo quiero que sea una App gratuita y en constante evolución).\n\nSi te apetece unirte a nuestra comunidad, dejarme algún tipo de sugerencia para mejorar, o apoyar la continuidad del proyecto (unos bits nunca vienen mal para pagar el servidor…), puedes encontrarme en Twitch y resto de redes sociales como @mouredev.\n\n¡Muchas gracias!</string>
+    <string name="menu.site">Visita twitimer.com para consultar toda la información oficial</string>
+    <string name="menu.onboarding">Visualiza de nuevo el tutorial de bienvenida</string>
+    <string name="menu.version">Versión %s. Twitimer no posee ningún tipo de relación con Twitch Interactive, Inc. y todos sus servicios.</string>
+
+</resources>
