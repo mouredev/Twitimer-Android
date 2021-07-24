@@ -30,7 +30,7 @@ import java.util.*
  * Created by MoureDev by Brais Moure on 5/31/21.
  * www.mouredev.com
  */
-class ScheduleRecyclerViewAdapter(val context: Context, var schedules: List<UserSchedule>, private val readOnly: Boolean, val updated: () -> Unit) :
+class ScheduleRecyclerViewAdapter(val context: Context, var schedules: List<UserSchedule>, private val readOnly: Boolean, private val updated: () -> Unit) :
     RecyclerView.Adapter<ScheduleRecyclerViewAdapter.ViewHolder>() {
 
     // Initialization

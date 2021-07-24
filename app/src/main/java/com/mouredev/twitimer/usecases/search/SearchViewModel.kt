@@ -68,22 +68,22 @@ class SearchViewModel : ViewModel() {
             loading.postValue(true)
 
             FirebaseRDBService.search(user, { resultUsers ->
-                Session.instance.reloadUser(context) {
+                Session.instance.reloadUser(context, {
                     this.search = arrayListOf()
                     this.users = resultUsers ?: arrayListOf()
                     load()
-                }
+                })
             }, {
-                Session.instance.reloadUser(context) {
+                Session.instance.reloadUser(context, {
                     search = arrayListOf()
                     users = arrayListOf()
                     load()
-                }
+                })
             })
         } else {
-            Session.instance.reloadUser(context) {
+            Session.instance.reloadUser(context, {
                 showStreamers()
-            }
+            })
         }
     }
 

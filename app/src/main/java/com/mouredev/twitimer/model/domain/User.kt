@@ -34,11 +34,11 @@ data class Users(val data: List<User>? = null) {
 data class User(
     val id: String? = null,
     val login: String? = null,
-    @SerializedName("display_name") val displayName: String? = null,
-    @SerializedName("broadcaster_type") val broadcasterType: BroadcasterType? = null,
-    @SerializedName("description") val descr: String? = null,
-    @SerializedName("profile_image_url") val profileImageUrl: String? = null,
-    @SerializedName("offline_image_url") val offlineImageUrl: String? = null
+    @SerializedName("display_name") var displayName: String? = null,
+    @SerializedName("broadcaster_type") var broadcasterType: BroadcasterType? = null,
+    @SerializedName("description") var descr: String? = null,
+    @SerializedName("profile_image_url") var profileImageUrl: String? = null,
+    @SerializedName("offline_image_url") var offlineImageUrl: String? = null
 ) {
 
     // Optional
@@ -73,6 +73,27 @@ data class User(
             scheduleJSON.add(userSchedule.toJSON())
         }
         return scheduleJSON
+    }
+
+    // Actualiza datos mutables del usuario. Esto ocurre cuando recuperamos de nuevo el usuario de Twitch para actualizarlo en Twitimer.
+    fun override(user: User): Boolean {
+
+        var override = false
+        if (displayName != user.displayName
+                || broadcasterType?.type != user.broadcasterType?.type
+                || descr != user.descr
+                || profileImageUrl != user.profileImageUrl
+                || offlineImageUrl != user.offlineImageUrl) {
+            override = true
+        }
+
+        displayName = user.displayName
+        broadcasterType = user.broadcasterType
+        descr = user.descr
+        profileImageUrl = user.profileImageUrl
+        offlineImageUrl = user.offlineImageUrl
+
+        return override
     }
 
     // Actualiza el calendario del usuario a fechas disponibles a futuro

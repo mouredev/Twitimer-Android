@@ -125,9 +125,11 @@ class UserFragment : Fragment() {
                 }
 
                 binding.switchStreamer.setOnCheckedChangeListener { _, isChecked ->
-                    viewModel.save(context, isChecked)
-                    setupBody(schedules)
-                    setupButtons()
+                    if (viewModel.isStreamer != isChecked) {
+                        viewModel.save(context, isChecked)
+                        setupBody(schedules)
+                        setupButtons()
+                    }
                 }
 
                 binding.buttonCloseSession.secondary {

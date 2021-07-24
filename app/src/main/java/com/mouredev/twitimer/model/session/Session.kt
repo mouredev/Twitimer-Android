@@ -191,26 +191,22 @@ class Session {
                 user?.followedUsers = followedUsers
                 user?.streamer = streamer
 
-                reloadUser(context, completion)
+                reloadUser(context, completion, true)
             }, {
                 reloadUser(context, completion)
             })
         }
     }
 
-    fun reloadUser(context: Context, completion: () -> Unit) {
+    fun reloadUser(context: Context, completion: () -> Unit, override: Boolean = false) {
 
         firebaseAuth(context) {
-            user?.let { user ->
-                FirebaseRDBService.user(user, { remoteUser ->
-                    this.user = remoteUser
-                    save(context, remoteUser)
-                    reloadStreamers(context, completion)
+            user?.let { currentUser ->
+                FirebaseRDBService.user(currentUser, { remoteUser ->
+                    saveNewUserAndReloadStreamers(context, currentUser, remoteUser, override, completion)
                 }, {
-                    FirebaseRDBService.user(user, { remoteUser ->
-                        this.user = remoteUser
-                        save(context, remoteUser)
-                        reloadStreamers(context, completion)
+                    FirebaseRDBService.user(currentUser, { remoteUser ->
+                        saveNewUserAndReloadStreamers(context, currentUser, remoteUser, override, completion)
                     }, {
                         reloadStreamers(context, completion)
                     }, true)
@@ -393,6 +389,17 @@ class Session {
 
             save(context, user!!)
         }
+    }
+
+    private fun saveNewUserAndReloadStreamers(context: Context, currentUser: User, newUser: User, override: Boolean, completion: () -> Unit) {
+        if (override && newUser.override(currentUser)) {
+            this.user = newUser
+            save(context)
+        } else {
+            this.user = newUser
+            save(context, newUser)
+        }
+        reloadStreamers(context, completion)
     }
 
     private fun mergeUsers(context: Context, user: User, oldFollowers: Set<String>, success: () -> Unit) {
