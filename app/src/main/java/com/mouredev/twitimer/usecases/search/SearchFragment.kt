@@ -149,6 +149,8 @@ class SearchFragment : Fragment() {
             binding.recyclerViewSearch.layoutManager = LinearLayoutManager(context)
             binding.recyclerViewSearch.adapter = SearchRecyclerViewAdapter(context, arrayListOf()) {
 
+                cancel()
+
                 // Add listener
                 showUsers()
             }
@@ -244,7 +246,11 @@ class SearchFragment : Fragment() {
                 adapter.notifyDataSetChanged()
 
             } else {
-                binding.buttonCancel.enable(enable = false, opacity = true)
+                if (viewModel.found) {
+                    binding.buttonCancel.enable(enable = true, opacity = true)
+                } else {
+                    binding.buttonCancel.enable(enable = false, opacity = true)
+                }
                 binding.recyclerViewQuery.visibility = View.INVISIBLE
                 binding.recyclerViewSearch.visibility = View.VISIBLE
 

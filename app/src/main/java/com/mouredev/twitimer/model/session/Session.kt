@@ -37,7 +37,7 @@ class Session {
         private set
     var user: User? = null
         private set
-    var streamers: List<User>? = null
+    var streamers: MutableList<User>? = null
         private set
     private var firebaseAuthUid: String? = null
 
@@ -67,7 +67,7 @@ class Session {
         }
         PreferencesProvider.string(context, PreferencesKey.STREAMERS)?.let {
             val users = Users.fromJson(it)
-            streamers = users.data
+            streamers = users.data?.toMutableList()
         }
         firebaseAuthUid = PreferencesProvider.string(context, PreferencesKey.FIREBASE_AUTH_UID)
 
@@ -140,30 +140,36 @@ class Session {
         }
     }
 
-    fun save(context: Context, followedUser: String) {
+    fun saveFollow(context: Context, followedUser: User) {
+
+        val login = followedUser.login ?: ""
 
         user?.followedUsers?.indexOfFirst {
-            it == followedUser
+            it == login
         }?.let { index ->
             if (index >= 0) {
                 user?.followedUsers?.removeAt(index)
+                streamers?.removeAll { user ->
+                    user.login == login
+                }
 
-                setupNotification(false, followedUser)
+                setupNotification(false, login)
             } else {
                 if (user?.followedUsers == null) {
                     user?.followedUsers = mutableListOf()
                 }
-                user?.followedUsers?.add(followedUser)
+                user?.followedUsers?.add(login)
 
-                setupNotification(true, followedUser)
+                setupNotification(true, login)
             }
         } ?: run {
             if (user?.followedUsers == null) {
                 user?.followedUsers = mutableListOf()
             }
-            user?.followedUsers?.add(followedUser)
+            user?.followedUsers?.add(login)
+            streamers?.add(followedUser)
 
-            setupNotification(true, followedUser)
+            setupNotification(true, login)
         }
 
         user?.let { user ->
@@ -222,7 +228,7 @@ class Session {
         val followedUsers = user?.followedUsers
         if (followedUsers != null && followedUsers.isNotEmpty()) {
             FirebaseRDBService.streamers(followedUsers) { streamers ->
-                this.streamers = streamers
+                this.streamers = streamers?.toMutableList()
                 val usersJSON = Users.toJson(Users(streamers))
                 PreferencesProvider.set(context, PreferencesKey.STREAMERS, usersJSON)
                 completion()

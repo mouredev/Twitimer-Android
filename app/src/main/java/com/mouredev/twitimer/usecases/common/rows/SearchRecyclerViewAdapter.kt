@@ -99,9 +99,7 @@ class SearchRecyclerViewAdapter(val context: Context, var users: List<User>, val
 
         private fun save(context: Context, user: User, listener: (User) -> Unit) {
 
-            user.login?.let { login ->
-                Session.instance.save(context, login)
-            }
+            Session.instance.saveFollow(context, user)
             listener(user)
         }
 
