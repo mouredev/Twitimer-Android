@@ -71,6 +71,6 @@
     <string name="menu.by">por</string>
     <string name="menu.info">Ola! Chámome Brais Moure, son o creador de Twitimer. Esta App foi desenvolvida para axudar a os usuarios de Twitch pero especialmente pensando en xerar contidos educacionais para unha cominidade chea de programadores interesados no mundo de desenvolvemento de aplicacións móviles. Eles fixeron posible o proxecto (ante todo quero que sexa una App gratuita e en constante evolución). Se che apetece unirte a nosa comunidade, deixarme algún tipmo de suxerencia para mellorar, ou apoiar a continuidade do proxecto (uns bits nunca ven mal para pagar o servidor...), podes atoparme en Twitch e no resto de redes como @mouredev. Moitas grazas!</string>
     <string name="menu.site">Visita twitimer.com para consultar toda a información oficial</string>
-    <string name="menu.onboarding">Visualiza o novo tutorial de benvida</string>
+    <string name="menu.onboarding">Visualiza o novo tutorial de benvida </string>
     <string name="menu.version">Version %s. Twitimer non ten ningunha relación con Twitch Interactive, Inc. e todos os seus servizos.</string>
 </resources>
