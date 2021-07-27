@@ -14,7 +14,7 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="8dp"
-        android:background="@drawable/item_round"
+        android:background="@drawable/item_round_secondary"
         android:orientation="horizontal"
         android:padding="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -22,19 +22,11 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <ImageView
-            android:id="@+id/imageViewCalendar"
-            android:layout_width="24dp"
-            android:layout_height="match_parent"
-            android:layout_marginEnd="16dp"
-            android:layout_weight="0"
-            app:srcCompat="@drawable/calendar_add"
-            app:tint="@color/light" />
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center">
+            android:gravity="center"
+            android:paddingLeft="32dp">
 
             <ImageView
                 android:id="@+id/imageViewAvatar"
@@ -90,5 +82,19 @@
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>
+
+    <ImageView
+        android:id="@+id/imageViewCalendar"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="16dp"
+        android:layout_weight="0"
+        android:background="@drawable/item_round_primary"
+        android:padding="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/layoutSearch"
+        app:layout_constraintStart_toStartOf="@+id/layoutSearch"
+        app:layout_constraintTop_toTopOf="@+id/layoutSearch"
+        app:srcCompat="@drawable/calendar_add"
+        app:tint="@color/light" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -13,15 +13,14 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.CheckedTextView
 import androidx.core.content.ContextCompat
+import androidx.core.view.updatePadding
 import androidx.recyclerview.widget.RecyclerView
 import com.mouredev.twitimer.R
 import com.mouredev.twitimer.databinding.ScheduleItemBinding
 import com.mouredev.twitimer.model.domain.UserSchedule
 import com.mouredev.twitimer.model.domain.UserSearch
 import com.mouredev.twitimer.model.domain.WeekdayType
-import com.mouredev.twitimer.util.FontSize
-import com.mouredev.twitimer.util.FontType
-import com.mouredev.twitimer.util.UIConstants
+import com.mouredev.twitimer.util.*
 import com.mouredev.twitimer.util.extension.*
 import java.util.*
 
@@ -246,6 +245,7 @@ class ScheduleRecyclerViewAdapter(val context: Context, var schedules: List<User
         binding.editTextInfo.imeOptions = EditorInfo.IME_ACTION_DONE
 
         if (readOnly) {
+            binding.layoutScheduleContent.updatePadding(left = Util.dpToPixel(context, Size.NONE.size).toInt())
             binding.editTextInfo.setBackgroundColor(ContextCompat.getColor(context, R.color.secondary))
             binding.editTextInfo.setTextColor(ContextCompat.getColor(context, R.color.light))
             binding.editTextInfo.isEnabled = false
