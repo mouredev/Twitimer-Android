@@ -29,7 +29,7 @@ data class DatabaseUser(
 
         val user = User(id, login, displayName, BroadcasterType.valueFrom(broadcasterType ?: ""), descr, profileImageUrl, offlineImageUrl)
         user.streamer = streamer == 1
-        user.schedule = schedule
+        user.schedule = schedule?.toMutableList()
         user.followedUsers = followedUsers ?: arrayListOf()
 
         return  user

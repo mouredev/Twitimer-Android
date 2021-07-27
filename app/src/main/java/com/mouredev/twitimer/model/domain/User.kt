@@ -44,7 +44,7 @@ data class User(
     // Optional
 
     var streamer: Boolean? = null
-    var schedule: List<UserSchedule>? = null
+    var schedule: MutableList<UserSchedule>? = null
     var followedUsers: MutableList<String>? = null
 
     fun toJSON(): Map<String, Any> {

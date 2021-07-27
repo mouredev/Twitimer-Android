@@ -29,7 +29,7 @@ import java.util.*
  * Created by MoureDev by Brais Moure on 5/31/21.
  * www.mouredev.com
  */
-class ScheduleRecyclerViewAdapter(val context: Context, var schedules: List<UserSchedule>, private val readOnly: Boolean, private val updated: () -> Unit) :
+class ScheduleRecyclerViewAdapter(val context: Context, var schedules: MutableList<UserSchedule>, private val readOnly: Boolean, private val updated: (schedule: UserSchedule) -> Unit) :
     RecyclerView.Adapter<ScheduleRecyclerViewAdapter.ViewHolder>() {
 
     // Initialization
@@ -46,7 +46,7 @@ class ScheduleRecyclerViewAdapter(val context: Context, var schedules: List<User
             return list
         }
 
-        fun bind(schedule: UserSchedule, readOnly: Boolean, updated: () -> Unit) = with(itemView) {
+        fun bind(schedule: UserSchedule, readOnly: Boolean, updated: (schedule: UserSchedule) -> Unit) = with(itemView) {
 
             val weekday = weekday(schedule, readOnly)
 
@@ -83,7 +83,7 @@ class ScheduleRecyclerViewAdapter(val context: Context, var schedules: List<User
 
                     override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
                         schedule.title = binding.editTextInfo.text.toString()
-                        updated()
+                        updated(schedule)
                     }
 
                     override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
@@ -120,14 +120,14 @@ class ScheduleRecyclerViewAdapter(val context: Context, var schedules: List<User
                         checkedTextView.font(FontSize.SUBHEAD, FontType.LIGHT, ContextCompat.getColor(context, R.color.light))
 
                         schedule.duration = position + 1
-                        updated()
+                        updated(schedule)
                     }
                 }
 
                 binding.imageViewCheck.setOnClickListener {
                     schedule.enable = !schedule.enable
                     setupEnable(schedule, readOnly)
-                    updated()
+                    updated(schedule)
                 }
 
                 binding.buttonDate.setOnClickListener {
@@ -151,7 +151,7 @@ class ScheduleRecyclerViewAdapter(val context: Context, var schedules: List<User
                                 schedule.date = calendar.time
 
                                 setupTime(schedule, readOnly)
-                                updated()
+                                updated(schedule)
 
                             }, currentHour, currentMinute, android.text.format.DateFormat.is24HourFormat(context)).show()
 
@@ -166,7 +166,7 @@ class ScheduleRecyclerViewAdapter(val context: Context, var schedules: List<User
                             schedule.date = calendar.time
 
                             setupTime(schedule, readOnly)
-                            updated()
+                            updated(schedule)
 
                         }, currentHour, currentMinute, android.text.format.DateFormat.is24HourFormat(context)).show()
                     }

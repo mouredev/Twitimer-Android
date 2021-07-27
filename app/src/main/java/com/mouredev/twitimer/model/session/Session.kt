@@ -127,7 +127,7 @@ class Session {
         }
     }
 
-    fun save(context: Context, schedule: List<UserSchedule>) {
+    fun save(context: Context, schedule: MutableList<UserSchedule>) {
 
         val savedSchedule = savedSchedule(context)
 
@@ -445,7 +445,7 @@ class Session {
         }
     }
 
-    private fun defaultSchedule(): List<UserSchedule> {
+    private fun defaultSchedule(): MutableList<UserSchedule> {
 
         val schedule: MutableList<UserSchedule> = mutableListOf()
         val date = Calendar.getInstance()

@@ -44,18 +44,18 @@ class UserViewModel : ViewModel() {
         return user ?: Session.instance.user
     }
 
-    fun getFilterSchedule(): List<UserSchedule>? {
+    fun getFilterSchedule(): MutableList<UserSchedule>? {
         return getUser()?.schedule?.filter { schedule ->
             // Si estamos en modo lectura no se muestran los no habilitados o eventos puntuales pasados
             !readOnly || (readOnly && schedule.enable && (schedule.weekDay != WeekdayType.CUSTOM || (schedule.weekDay == WeekdayType.CUSTOM  && schedule.date > Date())))
-        }
+        }?.toMutableList()
     }
 
     fun save(context: Context, streamer: Boolean) {
         Session.instance.save(context, streamer)
     }
 
-    fun save(context: Context, schedule: List<UserSchedule>) {
+    fun save(context: Context, schedule: MutableList<UserSchedule>) {
         Session.instance.save(context, schedule)
     }
 
@@ -75,11 +75,14 @@ class UserViewModel : ViewModel() {
         return PreferencesProvider.bool(context, PreferencesKey.FIRST_SYNC) == true
     }
 
-    fun checkEnableSave(context: Context): Boolean {
+    fun checkEnableSave(context: Context, schedule: UserSchedule): Boolean {
+
+        getUser()?.schedule?.set(schedule.weekDay.index, schedule)
 
         val savedSchedule = Session.instance.savedSchedule(context)
+        val currentSchedule = getUser()?.schedule
 
-        if (savedSchedule == null || savedSchedule != getUser()?.schedule) {
+        if (savedSchedule == null || savedSchedule != currentSchedule) {
             return true
         }
         return  false
