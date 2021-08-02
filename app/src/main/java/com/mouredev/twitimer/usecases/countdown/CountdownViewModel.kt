@@ -24,10 +24,10 @@ class CountdownViewModel : ViewModel() {
 
     fun load(context: Context) {
 
-        Session.instance.reloadUser(context) {
+        Session.instance.reloadUser(context, {
             streamings = Session.instance.sortedStreamings() ?: arrayListOf()
             loading.postValue(false)
-        }
+        })
     }
 
     fun reload(context: Context) {

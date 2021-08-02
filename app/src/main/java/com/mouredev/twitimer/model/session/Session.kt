@@ -37,7 +37,7 @@ class Session {
         private set
     var user: User? = null
         private set
-    var streamers: List<User>? = null
+    var streamers: MutableList<User>? = null
         private set
     private var firebaseAuthUid: String? = null
 
@@ -67,7 +67,7 @@ class Session {
         }
         PreferencesProvider.string(context, PreferencesKey.STREAMERS)?.let {
             val users = Users.fromJson(it)
-            streamers = users.data
+            streamers = users.data?.toMutableList()
         }
         firebaseAuthUid = PreferencesProvider.string(context, PreferencesKey.FIREBASE_AUTH_UID)
 
@@ -127,7 +127,7 @@ class Session {
         }
     }
 
-    fun save(context: Context, schedule: List<UserSchedule>) {
+    fun save(context: Context, schedule: MutableList<UserSchedule>) {
 
         val savedSchedule = savedSchedule(context)
 
@@ -140,30 +140,36 @@ class Session {
         }
     }
 
-    fun save(context: Context, followedUser: String) {
+    fun saveFollow(context: Context, followedUser: User) {
+
+        val login = followedUser.login ?: ""
 
         user?.followedUsers?.indexOfFirst {
-            it == followedUser
+            it == login
         }?.let { index ->
             if (index >= 0) {
                 user?.followedUsers?.removeAt(index)
+                streamers?.removeAll { user ->
+                    user.login == login
+                }
 
-                setupNotification(false, followedUser)
+                setupNotification(false, login)
             } else {
                 if (user?.followedUsers == null) {
                     user?.followedUsers = mutableListOf()
                 }
-                user?.followedUsers?.add(followedUser)
+                user?.followedUsers?.add(login)
 
-                setupNotification(true, followedUser)
+                setupNotification(true, login)
             }
         } ?: run {
             if (user?.followedUsers == null) {
                 user?.followedUsers = mutableListOf()
             }
-            user?.followedUsers?.add(followedUser)
+            user?.followedUsers?.add(login)
+            streamers?.add(followedUser)
 
-            setupNotification(true, followedUser)
+            setupNotification(true, login)
         }
 
         user?.let { user ->
@@ -191,26 +197,22 @@ class Session {
                 user?.followedUsers = followedUsers
                 user?.streamer = streamer
 
-                reloadUser(context, completion)
+                reloadUser(context, completion, true)
             }, {
                 reloadUser(context, completion)
             })
         }
     }
 
-    fun reloadUser(context: Context, completion: () -> Unit) {
+    fun reloadUser(context: Context, completion: () -> Unit, override: Boolean = false) {
 
         firebaseAuth(context) {
-            user?.let { user ->
-                FirebaseRDBService.user(user, { remoteUser ->
-                    this.user = remoteUser
-                    save(context, remoteUser)
-                    reloadStreamers(context, completion)
+            user?.let { currentUser ->
+                FirebaseRDBService.user(currentUser, { remoteUser ->
+                    saveNewUserAndReloadStreamers(context, currentUser, remoteUser, override, completion)
                 }, {
-                    FirebaseRDBService.user(user, { remoteUser ->
-                        this.user = remoteUser
-                        save(context, remoteUser)
-                        reloadStreamers(context, completion)
+                    FirebaseRDBService.user(currentUser, { remoteUser ->
+                        saveNewUserAndReloadStreamers(context, currentUser, remoteUser, override, completion)
                     }, {
                         reloadStreamers(context, completion)
                     }, true)
@@ -226,7 +228,7 @@ class Session {
         val followedUsers = user?.followedUsers
         if (followedUsers != null && followedUsers.isNotEmpty()) {
             FirebaseRDBService.streamers(followedUsers) { streamers ->
-                this.streamers = streamers
+                this.streamers = streamers?.toMutableList()
                 val usersJSON = Users.toJson(Users(streamers))
                 PreferencesProvider.set(context, PreferencesKey.STREAMERS, usersJSON)
                 completion()
@@ -395,6 +397,17 @@ class Session {
         }
     }
 
+    private fun saveNewUserAndReloadStreamers(context: Context, currentUser: User, newUser: User, override: Boolean, completion: () -> Unit) {
+        if (override && newUser.override(currentUser)) {
+            this.user = newUser
+            save(context)
+        } else {
+            this.user = newUser
+            save(context, newUser)
+        }
+        reloadStreamers(context, completion)
+    }
+
     private fun mergeUsers(context: Context, user: User, oldFollowers: Set<String>, success: () -> Unit) {
 
         this.user?.schedule = user.schedule
@@ -432,7 +445,7 @@ class Session {
         }
     }
 
-    private fun defaultSchedule(): List<UserSchedule> {
+    private fun defaultSchedule(): MutableList<UserSchedule> {
 
         val schedule: MutableList<UserSchedule> = mutableListOf()
         val date = Calendar.getInstance()

@@ -13,15 +13,14 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.CheckedTextView
 import androidx.core.content.ContextCompat
+import androidx.core.view.updatePadding
 import androidx.recyclerview.widget.RecyclerView
 import com.mouredev.twitimer.R
 import com.mouredev.twitimer.databinding.ScheduleItemBinding
 import com.mouredev.twitimer.model.domain.UserSchedule
 import com.mouredev.twitimer.model.domain.UserSearch
 import com.mouredev.twitimer.model.domain.WeekdayType
-import com.mouredev.twitimer.util.FontSize
-import com.mouredev.twitimer.util.FontType
-import com.mouredev.twitimer.util.UIConstants
+import com.mouredev.twitimer.util.*
 import com.mouredev.twitimer.util.extension.*
 import java.util.*
 
@@ -30,7 +29,7 @@ import java.util.*
  * Created by MoureDev by Brais Moure on 5/31/21.
  * www.mouredev.com
  */
-class ScheduleRecyclerViewAdapter(val context: Context, var schedules: List<UserSchedule>, private val readOnly: Boolean, val updated: () -> Unit) :
+class ScheduleRecyclerViewAdapter(val context: Context, var schedules: MutableList<UserSchedule>, private val readOnly: Boolean, private val updated: (schedule: UserSchedule) -> Unit) :
     RecyclerView.Adapter<ScheduleRecyclerViewAdapter.ViewHolder>() {
 
     // Initialization
@@ -47,7 +46,7 @@ class ScheduleRecyclerViewAdapter(val context: Context, var schedules: List<User
             return list
         }
 
-        fun bind(schedule: UserSchedule, readOnly: Boolean, updated: () -> Unit) = with(itemView) {
+        fun bind(schedule: UserSchedule, readOnly: Boolean, updated: (schedule: UserSchedule) -> Unit) = with(itemView) {
 
             val weekday = weekday(schedule, readOnly)
 
@@ -84,7 +83,7 @@ class ScheduleRecyclerViewAdapter(val context: Context, var schedules: List<User
 
                     override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
                         schedule.title = binding.editTextInfo.text.toString()
-                        updated()
+                        updated(schedule)
                     }
 
                     override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
@@ -121,14 +120,14 @@ class ScheduleRecyclerViewAdapter(val context: Context, var schedules: List<User
                         checkedTextView.font(FontSize.SUBHEAD, FontType.LIGHT, ContextCompat.getColor(context, R.color.light))
 
                         schedule.duration = position + 1
-                        updated()
+                        updated(schedule)
                     }
                 }
 
                 binding.imageViewCheck.setOnClickListener {
                     schedule.enable = !schedule.enable
                     setupEnable(schedule, readOnly)
-                    updated()
+                    updated(schedule)
                 }
 
                 binding.buttonDate.setOnClickListener {
@@ -152,7 +151,7 @@ class ScheduleRecyclerViewAdapter(val context: Context, var schedules: List<User
                                 schedule.date = calendar.time
 
                                 setupTime(schedule, readOnly)
-                                updated()
+                                updated(schedule)
 
                             }, currentHour, currentMinute, android.text.format.DateFormat.is24HourFormat(context)).show()
 
@@ -167,7 +166,7 @@ class ScheduleRecyclerViewAdapter(val context: Context, var schedules: List<User
                             schedule.date = calendar.time
 
                             setupTime(schedule, readOnly)
-                            updated()
+                            updated(schedule)
 
                         }, currentHour, currentMinute, android.text.format.DateFormat.is24HourFormat(context)).show()
                     }
@@ -246,6 +245,7 @@ class ScheduleRecyclerViewAdapter(val context: Context, var schedules: List<User
         binding.editTextInfo.imeOptions = EditorInfo.IME_ACTION_DONE
 
         if (readOnly) {
+            binding.layoutScheduleContent.updatePadding(left = Util.dpToPixel(context, Size.NONE.size).toInt())
             binding.editTextInfo.setBackgroundColor(ContextCompat.getColor(context, R.color.secondary))
             binding.editTextInfo.setTextColor(ContextCompat.getColor(context, R.color.light))
             binding.editTextInfo.isEnabled = false

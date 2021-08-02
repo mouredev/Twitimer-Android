@@ -150,9 +150,9 @@ class HomeActivity : AppCompatActivity(), AccountFragmentListener, CountdownFrag
 
     override fun authenticated() {
 
-        Session.instance.reloadUser(this) {
+        Session.instance.reloadUser(this, {
 
-        }
+        })
     }
 
     // CountdownFragmentListener

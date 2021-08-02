@@ -15,6 +15,8 @@ class SearchViewModel : ViewModel() {
 
     var lastSearchedUser: String? = null
         private set
+    var found = false
+        private set
 
     // Localization
 
@@ -68,32 +70,36 @@ class SearchViewModel : ViewModel() {
             loading.postValue(true)
 
             FirebaseRDBService.search(user, { resultUsers ->
-                Session.instance.reloadUser(context) {
+                Session.instance.reloadUser(context, {
                     this.search = arrayListOf()
-                    this.users = resultUsers ?: arrayListOf()
+                    this.found = !resultUsers.isNullOrEmpty()
+                    this.users = resultUsers?.toMutableList() ?: arrayListOf()
                     load()
-                }
+                })
             }, {
-                Session.instance.reloadUser(context) {
+                Session.instance.reloadUser(context, {
                     search = arrayListOf()
+                    found = false
                     users = arrayListOf()
                     load()
-                }
+                })
             })
         } else {
-            Session.instance.reloadUser(context) {
+            Session.instance.reloadUser(context, {
                 showStreamers()
-            }
+            })
         }
     }
 
     fun editing() {
         search = arrayListOf()
+        found = false
         users = arrayListOf()
         load()
     }
 
     fun cancel(context: Context) {
+        found = false
         search(context, "")
     }
 
@@ -101,6 +107,7 @@ class SearchViewModel : ViewModel() {
 
     private fun showStreamers() {
         search = arrayListOf()
+        found = false
         users = Session.instance.streamers ?: arrayListOf()
         load()
     }

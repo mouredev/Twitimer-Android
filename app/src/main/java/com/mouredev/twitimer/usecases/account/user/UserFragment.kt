@@ -11,11 +11,9 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.mouredev.twitimer.R
 import com.mouredev.twitimer.databinding.UserFragmentBinding
-import com.mouredev.twitimer.model.domain.User
 import com.mouredev.twitimer.model.domain.UserSchedule
 import com.mouredev.twitimer.provider.preferences.PreferencesKey
 import com.mouredev.twitimer.provider.preferences.PreferencesProvider
-import com.mouredev.twitimer.provider.services.firebase.FirebaseRDBService
 import com.mouredev.twitimer.usecases.common.rows.ScheduleRecyclerViewAdapter
 import com.mouredev.twitimer.usecases.common.views.info.InfoFragment
 import com.mouredev.twitimer.usecases.common.views.info.InfoRouter
@@ -125,9 +123,11 @@ class UserFragment : Fragment() {
                 }
 
                 binding.switchStreamer.setOnCheckedChangeListener { _, isChecked ->
-                    viewModel.save(context, isChecked)
-                    setupBody(schedules)
-                    setupButtons()
+                    if (viewModel.isStreamer != isChecked) {
+                        viewModel.save(context, isChecked)
+                        setupBody(schedules)
+                        setupButtons()
+                    }
                 }
 
                 binding.buttonCloseSession.secondary {
@@ -157,8 +157,8 @@ class UserFragment : Fragment() {
                 // Recycler view
 
                 binding.recyclerViewSchedule.layoutManager = LinearLayoutManager(context)
-                binding.recyclerViewSchedule.adapter = ScheduleRecyclerViewAdapter(context, schedules, viewModel.readOnly) {
-                    checkEnableSave(context)
+                binding.recyclerViewSchedule.adapter = ScheduleRecyclerViewAdapter(context, schedules, viewModel.readOnly) { schedule ->
+                    checkEnableSave(context, schedule)
                 }
             }
 
@@ -233,8 +233,8 @@ class UserFragment : Fragment() {
         }, getString(viewModel.cancelText))
     }
 
-    private fun checkEnableSave(context: Context) {
-        binding.buttonSaveSchedule.enable(viewModel.checkEnableSave(context))
+    private fun checkEnableSave(context: Context, schedule: UserSchedule) {
+        binding.buttonSaveSchedule.enable(viewModel.checkEnableSave(context, schedule))
     }
 
 }
