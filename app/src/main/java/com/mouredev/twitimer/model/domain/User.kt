@@ -174,7 +174,7 @@ data class UserSchedule(
             val updatedDate = components.time
             date = updatedDate
 
-            date = date.next(nextWeekday, true)
+            date = date.next(nextWeekday, true, save = true)
         }
 
         return mutableMapOf(
