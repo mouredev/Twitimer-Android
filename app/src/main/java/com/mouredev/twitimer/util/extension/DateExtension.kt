@@ -31,7 +31,7 @@ fun Date.shortFormat(): String {
     return DateFormat.getTimeInstance(DateFormat.SHORT, Locale.getDefault()).format(this).format(this).uppercaseFirst()
 }
 
-fun Date.next(weekday: Weekday, considerToday: Boolean = false, referenceDate: Date? = null, duration: Int? = null): Date {
+fun Date.next(weekday: Weekday, considerToday: Boolean = false, referenceDate: Date? = null, duration: Int? = null, save: Boolean = false): Date {
 
     val dayName = weekday.englishName
     val weekdaysName = getWeekDaysInEnglish().map { it.lowercase() }
@@ -43,7 +43,9 @@ fun Date.next(weekday: Weekday, considerToday: Boolean = false, referenceDate: D
     if (considerToday && dayOfWeek == searchWeekdayIndex) {
         if (referenceDate != null && duration != null && Date(referenceDate.time + (1000 * 60 * 60 * duration)) > this) {
             return referenceDate
-        } else if (this > Date()) {
+        } else if (Date(this.time + (1000 * 60 * 60 * (duration ?: 0))) <= Date()) {
+            return this
+        } else if (save && this > Date()) {
             return this
         }
     }
