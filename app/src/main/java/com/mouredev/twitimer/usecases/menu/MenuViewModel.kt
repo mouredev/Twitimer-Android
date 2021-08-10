@@ -13,7 +13,7 @@ import com.mouredev.twitimer.util.Util
 
 enum class Network {
 
-    TWITCH, DISCORD, YOUTUBE, TWITTER, INSTAGRAM, GITHUB;
+    TWITCH, DISCORD, YOUTUBE, TWITTER, INSTAGRAM, TIKTOK, GITHUB;
 
     val uri: String
         get() {
@@ -23,6 +23,7 @@ enum class Network {
                YOUTUBE -> Constants.YOUTUBE_MOUREDEV_URI
                TWITTER -> Constants.TWITTER_MOUREDEV_URI
                INSTAGRAM -> Constants.INSTAGRAM_MOUREDEV_URI
+               TIKTOK -> Constants.TIKTOK_MOUREDEV_URI
                GITHUB -> Constants.GITHUB_MOUREDEV_URI
            }
         }
@@ -34,7 +35,6 @@ class MenuViewModel : ViewModel() {
     // Localization
 
     val updateText = R.string.countdown_reload
-
 
     val byText = R.string.menu_by
     val infoText = R.string.menu_info

@@ -105,6 +105,10 @@ class MenuActivity : AppCompatActivity() {
             viewModel.open(this, Network.INSTAGRAM)
         }
 
+        binding.imageButtonTikTok.setOnClickListener {
+            viewModel.open(this, Network.TIKTOK)
+        }
+
         binding.imageButtonGitHub.setOnClickListener {
             viewModel.open(this, Network.GITHUB)
         }
