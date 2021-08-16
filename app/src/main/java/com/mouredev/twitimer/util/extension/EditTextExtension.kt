@@ -3,6 +3,7 @@ package com.mouredev.twitimer.util.extension
 import android.graphics.Typeface
 import android.util.TypedValue
 import android.view.View
+import android.view.inputmethod.EditorInfo
 import android.widget.EditText
 import android.widget.SearchView
 import android.widget.TextView
@@ -37,6 +38,10 @@ fun EditText.font(size: FontSize, type: FontType? = null, color: Int = ContextCo
 
 fun EditText.center() {
     textAlignment = View.TEXT_ALIGNMENT_CENTER
+}
+
+fun EditText.actionDone() {
+    imeOptions = EditorInfo.IME_ACTION_DONE
 }
 
 fun SearchView.font() {

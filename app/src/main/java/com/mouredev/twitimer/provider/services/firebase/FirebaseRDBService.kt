@@ -25,7 +25,11 @@ enum class DatabaseField(val key: String) {
     // Schedule
     SCHEDULE("schedule"), ENABLE("enable"), WEEKDAY("weekDay"), DATE("date"), DURATION("duration"), TITLE("title"),
 
-    FOLLOWED_USERS("followedUsers")
+    FOLLOWED_USERS("followedUsers"),
+
+    // Settings
+    SETTINGS("settings"), DISCORD("discord"), YOUTUBE("youtube"), TWITTER("twitter"), INSTAGRAM("instagram"), TIKTOK("tiktok")
+
 }
 
 
@@ -55,6 +59,13 @@ object FirebaseRDBService {
 
         user.login?.let { login ->
             streamersRef.child(login).child(DatabaseField.SCHEDULE.key).setValue(user.scheduleToJSON())
+        }
+    }
+
+    fun saveSettings(user: User) {
+
+        user.login?.let { login ->
+            streamersRef.child(login).child(DatabaseField.SETTINGS.key).setValue(user.settingsToJSON())
         }
     }
 

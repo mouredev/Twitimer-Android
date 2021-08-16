@@ -12,6 +12,7 @@ import com.mouredev.twitimer.databinding.ActivityMenuBinding
 import com.mouredev.twitimer.usecases.onboarding.OnboardingRouter
 import com.mouredev.twitimer.util.FontSize
 import com.mouredev.twitimer.util.FontType
+import com.mouredev.twitimer.util.extension.addClose
 import com.mouredev.twitimer.util.extension.font
 import com.mouredev.twitimer.util.extension.navigation
 
@@ -65,14 +66,7 @@ class MenuActivity : AppCompatActivity() {
 
         // UI
 
-        supportActionBar?.title = ""
-        supportActionBar?.elevation = 0f
-
-        val closeIcon = (ContextCompat.getDrawable(this, R.drawable.close) as BitmapDrawable).bitmap
-        val resizedCloseIcon: Drawable = BitmapDrawable(resources, Bitmap.createScaledBitmap(closeIcon, 48, 48, false))
-        resizedCloseIcon.setTint(ContextCompat.getColor(this, R.color.light))
-        supportActionBar?.setHomeAsUpIndicator(resizedCloseIcon)
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        addClose()
 
         binding.textViewBy.font(FontSize.BODY, FontType.LIGHT, getColor(R.color.light))
         binding.textViewInfo.font(FontSize.CAPTION, FontType.LIGHT, getColor(R.color.light))

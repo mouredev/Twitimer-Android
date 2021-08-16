@@ -95,4 +95,14 @@
     <string name="menu.onboarding">Visualiza de nuevo el tutorial de bienvenida</string>
     <string name="menu.version">Versión %s. Twitimer no posee ningún tipo de relación con Twitch Interactive, Inc. y todos sus servicios.</string>
 
+    <!-- Settings -->
+
+    <string name="settings.socialmedia">Redes sociales</string>
+    <string name="settings.discord.placeholder">Código de invitación de Discord</string>
+    <string name="settings.youtube.placeholder">Usuario de YouTube</string>
+    <string name="settings.twitter.placeholder">Usuario de Twitter</string>
+    <string name="settings.instagram.placeholder">Usuario de Instagram</string>
+    <string name="settings.tiktok.placeholder">Usuario de TikTok</string>
+    <string name="settings.savesettings">Guardar ajustes</string>
+
 </resources>

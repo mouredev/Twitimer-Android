@@ -242,7 +242,7 @@ class ScheduleRecyclerViewAdapter(val context: Context, var schedules: MutableLi
         binding.textViewDay.font(FontSize.HEAD, color = ContextCompat.getColor(context, R.color.light))
         binding.editTextInfo.font(FontSize.BODY, color = ContextCompat.getColor(context, R.color.text))
         binding.editTextInfo.hint = context.getString(R.string.schedule_event_placeholder)
-        binding.editTextInfo.imeOptions = EditorInfo.IME_ACTION_DONE
+        binding.editTextInfo.actionDone()
 
         if (readOnly) {
             binding.layoutScheduleContent.updatePadding(left = Util.dpToPixel(context, Size.NONE.size).toInt())

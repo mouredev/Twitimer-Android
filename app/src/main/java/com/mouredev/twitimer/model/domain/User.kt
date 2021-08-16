@@ -1,6 +1,5 @@
 package com.mouredev.twitimer.model.domain
 
-import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.google.gson.annotations.SerializedName
 import com.mouredev.twitimer.R
@@ -46,6 +45,7 @@ data class User(
     var streamer: Boolean? = null
     var schedule: MutableList<UserSchedule>? = null
     var followedUsers: MutableList<String>? = null
+    var settings: UserSettings? = null
 
     fun toJSON(): Map<String, Any> {
 
@@ -62,6 +62,7 @@ data class User(
         )
 
         JSON[DatabaseField.SCHEDULE.key] = scheduleToJSON()
+        JSON[DatabaseField.SETTINGS.key] = settingsToJSON()
 
         return JSON
     }
@@ -73,6 +74,10 @@ data class User(
             scheduleJSON.add(userSchedule.toJSON())
         }
         return scheduleJSON
+    }
+
+    fun settingsToJSON(): MutableMap<String, String> {
+        return settings?.toJSON() ?: mutableMapOf()
     }
 
     // Actualiza datos mutables del usuario. Esto ocurre cuando recuperamos de nuevo el usuario de Twitch para actualizarlo en Twitimer.
@@ -270,6 +275,27 @@ enum class WeekdayType(val index: Int) {
         fun valueFrom(index: Int): WeekdayType {
             return values().find { it.index == index } ?: CUSTOM
         }
+    }
+
+}
+
+data class UserSettings(
+    val discord: String? = null,
+    val youtube: String? = null,
+    val twitter: String? = null,
+    val instagram: String? = null,
+    val tiktok: String? = null
+) {
+
+    fun toJSON(): MutableMap<String, String> {
+
+        return mutableMapOf(
+            DatabaseField.DISCORD.key to (discord ?: ""),
+            DatabaseField.YOUTUBE.key to (youtube ?: ""),
+            DatabaseField.TWITTER.key to (twitter ?: ""),
+            DatabaseField.INSTAGRAM.key to (instagram ?: ""),
+            DatabaseField.TIKTOK.key to (tiktok ?: "")
+        )
     }
 
 }
