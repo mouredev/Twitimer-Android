@@ -43,9 +43,9 @@ fun Date.next(weekday: Weekday, considerToday: Boolean = false, referenceDate: D
     if (considerToday && dayOfWeek == searchWeekdayIndex) {
         if (referenceDate != null && duration != null && Date(referenceDate.time + (1000 * 60 * 60 * duration)) > this) {
             return referenceDate
-        } else if (Date(this.time + (1000 * 60 * 60 * (duration ?: 0))) <= Date()) {
-            return this
-        } else if (save && this > Date()) {
+        } else if (Date() <= Date(this.time + (1000 * 60 * 60 * (duration ?: 0)))
+            || Date(this.time + (1000 * 60 * 60 * (duration ?: 0))) <= Date()
+            || save && this > Date()) {
             return this
         }
     }
