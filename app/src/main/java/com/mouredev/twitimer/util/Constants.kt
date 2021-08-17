@@ -40,5 +40,10 @@ object Constants {
     const val INSTAGRAM_MOUREDEV_URI = "https://instagram.com/mouredev"
     const val TIKTOK_MOUREDEV_URI = "https://tiktok.com/@mouredev"
     const val GITHUB_MOUREDEV_URI = "https://github.com/mouredev"
+    const val DISCORD_URI = "https://discord.gg/"
+    const val YOUTUBE_URI = "https://youtube.com/"
+    const val TWITTER_URI = "https://twitter.com/"
+    const val INSTAGRAM_URI = "https://instagram.com/"
+    const val TIKTOK_URI = "https://tiktok.com/@"
 
 }

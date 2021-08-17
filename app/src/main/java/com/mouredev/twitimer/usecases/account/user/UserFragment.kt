@@ -35,7 +35,6 @@ class UserFragment : Fragment() {
     private val binding get() = _binding!!
 
     private lateinit var viewModel: UserViewModel
-    private var listener: UserFragmentListener? = null
     private var infoFragment: InfoFragment? = null
 
     // Initialization
@@ -66,21 +65,13 @@ class UserFragment : Fragment() {
             }
         }
 
-        if (listener != null || viewModel.getUser() != null) {
-
-            // Setup
-            localize()
-            setup()
-            data()
-        }
-
+        // Setup
+        localize()
+        setup()
+        data()
     }
 
     // Public
-
-    fun setListener(listener: UserFragmentListener) {
-        this.listener = listener
-    }
 
     // Private
 
@@ -88,8 +79,6 @@ class UserFragment : Fragment() {
 
         binding.textViewSchedule.text = getText(viewModel.scheduleText)
         binding.textViewStreamer.text = getText(viewModel.streamerText)
-
-        binding.buttonCloseSession.text = getText(viewModel.closeText)
         binding.buttonSaveSchedule.text = getText(viewModel.saveText)
     }
 
@@ -97,7 +86,7 @@ class UserFragment : Fragment() {
 
         val transaction = activity?.supportFragmentManager?.beginTransaction()
         viewModel.getUser()?.let { user ->
-            transaction?.replace(R.id.frameLayoutUserHeader, UserHeaderFragment.fragment(user))
+            transaction?.replace(R.id.frameLayoutUserHeader, UserHeaderFragment.fragment(user, viewModel.readOnly))
         }
 
         val schedules = viewModel.getFilterSchedule()
@@ -128,16 +117,6 @@ class UserFragment : Fragment() {
                         setupBody(schedules)
                         setupButtons()
                     }
-                }
-
-                binding.buttonCloseSession.secondary {
-
-                    UIUtil.showAlert(context, getString(viewModel.closeText), getString(viewModel.closeAlertText), getString(viewModel.okText), {
-
-                        view?.hideSoftInput()
-                        viewModel.close(context, listener)
-
-                    }, getString(viewModel.cancelText))
                 }
 
                 binding.buttonSaveSchedule.enable(false)

@@ -9,7 +9,6 @@ import android.view.View
 import android.view.ViewGroup
 import com.mouredev.twitimer.R
 import com.mouredev.twitimer.databinding.AccountFragmentBinding
-import com.mouredev.twitimer.usecases.account.user.UserFragmentListener
 import com.mouredev.twitimer.usecases.account.user.UserRouter
 import com.mouredev.twitimer.usecases.common.views.info.InfoFragmentListener
 import com.mouredev.twitimer.usecases.common.views.info.InfoRouter
@@ -17,7 +16,7 @@ import com.mouredev.twitimer.usecases.common.views.info.InfoViewType
 import com.mouredev.twitimer.usecases.common.views.webview.WebViewFragmentListener
 import com.mouredev.twitimer.usecases.common.views.webview.WebViewRouter
 
-class AccountFragment : Fragment(), InfoFragmentListener, WebViewFragmentListener, UserFragmentListener {
+class AccountFragment : Fragment(), InfoFragmentListener, WebViewFragmentListener {
 
     companion object {
         fun fragment() = AccountFragment()
@@ -56,6 +55,11 @@ class AccountFragment : Fragment(), InfoFragmentListener, WebViewFragmentListene
 
     }
 
+    override fun onResume() {
+        super.onResume()
+        viewModel.checkSession()
+    }
+
     // Public
 
     fun setListener(listener: AccountFragmentListener) {
@@ -75,7 +79,7 @@ class AccountFragment : Fragment(), InfoFragmentListener, WebViewFragmentListene
             viewModel.authenticated.observe(activity) { authenticated ->
 
                 if (authenticated) {
-                    UserRouter().replace(activity.supportFragmentManager, R.id.accountContainer, null, this)
+                    UserRouter().replace(activity.supportFragmentManager, R.id.accountContainer, null)
                 }
             }
 
@@ -94,6 +98,12 @@ class AccountFragment : Fragment(), InfoFragmentListener, WebViewFragmentListene
         }
     }
 
+    private fun searching(show: Boolean) = if (show) {
+        binding.fragmentProgressBar.visibility = View.VISIBLE
+    } else {
+        binding.fragmentProgressBar.visibility = View.GONE
+    }
+
     // InfoFragmentListener
 
     override fun action() {
@@ -107,18 +117,6 @@ class AccountFragment : Fragment(), InfoFragmentListener, WebViewFragmentListene
         context?.let { context ->
             viewModel.selected(context, uri, listener)
         }
-    }
-
-    // UserFragmentListener
-
-    override fun onClose() {
-        viewModel.load()
-    }
-
-    private fun searching(show: Boolean) = if (show) {
-        binding.fragmentProgressBar.visibility = View.VISIBLE
-    } else {
-        binding.fragmentProgressBar.visibility = View.GONE
     }
 
 }
