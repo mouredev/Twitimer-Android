@@ -41,10 +41,19 @@ fun Date.next(weekday: Weekday, considerToday: Boolean = false, referenceDate: D
 
     val dayOfWeek = calendar.get(Calendar.DAY_OF_WEEK)
     if (considerToday && dayOfWeek == searchWeekdayIndex) {
-        if (referenceDate != null && duration != null && Date(referenceDate.time + (1000 * 60 * 60 * duration)) > this) {
-            return referenceDate
-        } else if (Date() <= Date(this.time + (1000 * 60 * 60 * (duration ?: 0)))
-            || Date(this.time + (1000 * 60 * 60 * (duration ?: 0))) <= Date()
+        if (referenceDate != null && duration != null) {
+
+            val referenceCalendar = Calendar.getInstance()
+            referenceCalendar.time = referenceDate
+            referenceCalendar.set(Calendar.DAY_OF_YEAR, calendar.get(Calendar.DAY_OF_YEAR))
+            referenceCalendar.set(Calendar.DAY_OF_MONTH, calendar.get(Calendar.DAY_OF_MONTH))
+            referenceCalendar.set(Calendar.MONTH, calendar.get(Calendar.MONTH))
+            referenceCalendar.set(Calendar.YEAR, calendar.get(Calendar.YEAR))
+
+            if (Date(referenceCalendar.time.time + (1000 * 60 * 60 * duration)) > this) {
+                return referenceCalendar.time
+            }
+        } else if (Date(this.time + (1000 * 60 * 60 * (duration ?: 0))) <= Date()
             || save && this > Date()) {
             return this
         }

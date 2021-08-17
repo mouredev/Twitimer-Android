@@ -194,7 +194,7 @@ data class UserSchedule(
     // Obtiene la fecha ficticia más próxima al día de la semana
     fun weekDate(): Date {
 
-        weekDay.toDateWeekday()?.let { nextWeekday ->
+        currentWeekDay.toDateWeekday()?.let { nextWeekday ->
             val nextDate = date.next(nextWeekday, true, date, duration)
             var finishDate = nextDate
             finishDate = Date(finishDate.time + (1000 * 60 * 60 * duration))
