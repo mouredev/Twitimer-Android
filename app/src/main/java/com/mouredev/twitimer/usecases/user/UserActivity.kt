@@ -70,7 +70,7 @@ class UserActivity : AppCompatActivity() {
 
     private fun data() {
 
-        com.mouredev.twitimer.usecases.account.user.UserRouter().replace(supportFragmentManager, R.id.userContainer, user, null)
+        com.mouredev.twitimer.usecases.account.user.UserRouter().replace(supportFragmentManager, R.id.userContainer, user)
     }
 
 }

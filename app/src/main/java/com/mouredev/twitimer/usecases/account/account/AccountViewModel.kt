@@ -46,6 +46,12 @@ class AccountViewModel : ViewModel() {
         info.postValue(false)
     }
 
+    fun checkSession() {
+        if (Session.instance.user?.login == null) {
+            load()
+        }
+    }
+
     // Private
 
     private fun authenticate(context: Context, authorizationCode: String, listener: AccountFragmentListener?) {

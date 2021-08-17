@@ -35,9 +35,8 @@ class SettingsViewModel : ViewModel() {
     fun checkEnableSave(context: Context): Boolean {
 
         val savedSettings = Session.instance.savedSettings(context)
-        val currentSettings = Session.instance.user?.settings
 
-        if (savedSettings != currentSettings) {
+        if (savedSettings != settings) {
             return true
         }
         return  false
@@ -45,6 +44,13 @@ class SettingsViewModel : ViewModel() {
 
     fun save(context: Context) {
         Session.instance.save(context, settings)
+    }
+
+    fun close(context: SettingsActivity) {
+
+        Session.instance.revoke(context) {
+            context.onBackPressed()
+        }
     }
 
 }

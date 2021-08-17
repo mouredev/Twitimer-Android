@@ -1,6 +1,5 @@
 package com.mouredev.twitimer.usecases.settings
 
-import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
@@ -10,8 +9,6 @@ import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import com.mouredev.twitimer.R
 import com.mouredev.twitimer.databinding.ActivitySettingsBinding
-import com.mouredev.twitimer.model.domain.UserSchedule
-import com.mouredev.twitimer.usecases.common.rows.ScheduleRecyclerViewAdapter
 import com.mouredev.twitimer.util.FontSize
 import com.mouredev.twitimer.util.UIUtil
 import com.mouredev.twitimer.util.extension.*
@@ -81,12 +78,14 @@ class SettingsActivity : AppCompatActivity() {
         binding.buttonCloseSession.secondary {
 
             UIUtil.showAlert(this, getString(viewModel.closeText), getString(viewModel.closeAlertText), getString(viewModel.okText), {
-                //viewModel.close(context, listener)
+                hideSoftInput()
+                viewModel.close(this)
             }, getString(viewModel.cancelText))
         }
 
         binding.buttonSaveSettings.enable(false)
         binding.buttonSaveSettings.primary {
+            hideSoftInput()
             viewModel.save(this)
             binding.buttonSaveSettings.enable(false)
         }
@@ -105,8 +104,8 @@ class SettingsActivity : AppCompatActivity() {
         binding.editTextDiscord.setOnEditorActionListener { textView, actionId, _ ->
             if (actionId == EditorInfo.IME_ACTION_DONE) {
                 viewModel.settings.discord = binding.editTextDiscord.text.toString()
-                textView?.hideSoftInput()
-                binding.editTextDiscord.clearFocus()
+                hideSoftInput()
+                textView.clearFocus()
                 return@setOnEditorActionListener true
             } else {
                 return@setOnEditorActionListener false
@@ -137,8 +136,8 @@ class SettingsActivity : AppCompatActivity() {
         binding.editTextYouTube.setOnEditorActionListener { textView, actionId, _ ->
             if (actionId == EditorInfo.IME_ACTION_DONE) {
                 viewModel.settings.youtube = binding.editTextYouTube.text.toString()
-                textView?.hideSoftInput()
-                binding.editTextYouTube.clearFocus()
+                hideSoftInput()
+                textView.clearFocus()
                 return@setOnEditorActionListener true
             } else {
                 return@setOnEditorActionListener false
@@ -169,8 +168,8 @@ class SettingsActivity : AppCompatActivity() {
         binding.editTextTwitter.setOnEditorActionListener { textView, actionId, _ ->
             if (actionId == EditorInfo.IME_ACTION_DONE) {
                 viewModel.settings.twitter = binding.editTextTwitter.text.toString()
-                textView?.hideSoftInput()
-                binding.editTextTwitter.clearFocus()
+                hideSoftInput()
+                textView.clearFocus()
                 return@setOnEditorActionListener true
             } else {
                 return@setOnEditorActionListener false
@@ -201,8 +200,8 @@ class SettingsActivity : AppCompatActivity() {
         binding.editTextInstagram.setOnEditorActionListener { textView, actionId, _ ->
             if (actionId == EditorInfo.IME_ACTION_DONE) {
                 viewModel.settings.instagram = binding.editTextInstagram.text.toString()
-                textView?.hideSoftInput()
-                binding.editTextInstagram.clearFocus()
+                hideSoftInput()
+                textView.clearFocus()
                 return@setOnEditorActionListener true
             } else {
                 return@setOnEditorActionListener false
@@ -233,8 +232,8 @@ class SettingsActivity : AppCompatActivity() {
         binding.editTextTikTok.setOnEditorActionListener { textView, actionId, _ ->
             if (actionId == EditorInfo.IME_ACTION_DONE) {
                 viewModel.settings.tiktok = binding.editTextTikTok.text.toString()
-                textView?.hideSoftInput()
-                binding.editTextTikTok.clearFocus()
+                hideSoftInput()
+                textView.clearFocus()
                 return@setOnEditorActionListener true
             } else {
                 return@setOnEditorActionListener false

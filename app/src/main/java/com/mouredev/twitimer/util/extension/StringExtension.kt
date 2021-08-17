@@ -46,3 +46,8 @@ fun String.removeFirebaseInvalidCharacters(): String {
         .replace("[", "")
         .replace("]", "")
 }
+
+fun String.removeSocialInvalidCharacters(): String {
+    return replace("@", "")
+        .replace(" ", "")
+}

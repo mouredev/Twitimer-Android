@@ -432,6 +432,7 @@ class Session {
     private fun mergeUsers(context: Context, user: User, oldFollowers: Set<String>, success: () -> Unit) {
 
         this.user?.schedule = user.schedule
+        this.user?.settings = user.settings
 
         // Merge followers
         val mergedFollowers = oldFollowers.union(HashSet(user.followedUsers ?: arrayListOf())).toMutableList()
