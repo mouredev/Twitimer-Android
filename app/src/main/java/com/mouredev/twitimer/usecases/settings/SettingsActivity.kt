@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.inputmethod.EditorInfo
+import android.widget.EditText
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import com.mouredev.twitimer.R
@@ -20,6 +21,8 @@ class SettingsActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySettingsBinding
 
     private lateinit var viewModel: SettingsViewModel
+
+    private var currentEditText: EditText? = null
 
     // Initialization
 
@@ -46,6 +49,7 @@ class SettingsActivity : AppCompatActivity() {
 
     override fun onBackPressed() {
         super.onBackPressed()
+        viewModel.restoreSaveSettings(this)
         overridePendingTransition(R.anim.slide_back_in_up, R.anim.slide_back_out_up)
     }
 
@@ -80,6 +84,7 @@ class SettingsActivity : AppCompatActivity() {
             UIUtil.showAlert(this, getString(viewModel.closeText), getString(viewModel.closeAlertText), getString(viewModel.okText), {
                 hideSoftInput()
                 viewModel.close(this)
+                currentEditText?.clearFocus()
             }, getString(viewModel.cancelText))
         }
 
@@ -88,6 +93,7 @@ class SettingsActivity : AppCompatActivity() {
             hideSoftInput()
             viewModel.save(this)
             binding.buttonSaveSettings.enable(false)
+            currentEditText?.clearFocus()
         }
 
     }
@@ -115,6 +121,7 @@ class SettingsActivity : AppCompatActivity() {
         binding.editTextDiscord.addTextChangedListener(object : TextWatcher {
 
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
+                currentEditText = binding.editTextDiscord
                 viewModel.settings.discord = binding.editTextDiscord.text.toString()
                 checkEnableSave()
             }
@@ -147,6 +154,7 @@ class SettingsActivity : AppCompatActivity() {
         binding.editTextYouTube.addTextChangedListener(object : TextWatcher {
 
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
+                currentEditText = binding.editTextYouTube
                 viewModel.settings.youtube = binding.editTextYouTube.text.toString()
                 checkEnableSave()
             }
@@ -179,6 +187,7 @@ class SettingsActivity : AppCompatActivity() {
         binding.editTextTwitter.addTextChangedListener(object : TextWatcher {
 
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
+                currentEditText = binding.editTextTwitter
                 viewModel.settings.twitter = binding.editTextTwitter.text.toString()
                 checkEnableSave()
             }
@@ -211,6 +220,7 @@ class SettingsActivity : AppCompatActivity() {
         binding.editTextInstagram.addTextChangedListener(object : TextWatcher {
 
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
+                currentEditText = binding.editTextInstagram
                 viewModel.settings.instagram = binding.editTextInstagram.text.toString()
                 checkEnableSave()
             }
@@ -243,6 +253,7 @@ class SettingsActivity : AppCompatActivity() {
         binding.editTextTikTok.addTextChangedListener(object : TextWatcher {
 
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
+                currentEditText = binding.editTextTikTok
                 viewModel.settings.tiktok = binding.editTextTikTok.text.toString()
                 checkEnableSave()
             }
