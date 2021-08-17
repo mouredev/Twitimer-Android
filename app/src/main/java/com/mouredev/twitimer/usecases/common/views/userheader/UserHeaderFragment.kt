@@ -81,7 +81,7 @@ class UserHeaderFragment : Fragment() {
     private fun setup() {
 
         val transaction = activity?.supportFragmentManager?.beginTransaction()
-        transaction?.replace(R.id.frameLayoutUserAvatar, UserAvatarFragment.fragment(user?.profileImageUrl ?: "", user?.login ?: "", if (small) Size.VERY_BIG else Size.GIGANT))
+        transaction?.replace(R.id.frameLayoutUserAvatar, UserAvatarFragment.fragment(user?.profileImageUrl ?: "", user?.login ?: "", if (small) Size.VERY_BIG else Size.GIGANT, true))
         transaction?.replace(R.id.frameLayoutBroadcasterType, UserBroadcasterTypeFragment.fragment(user?.broadcasterType ?: BroadcasterType.NONE))
         transaction?.replace(if (small) R.id.frameLayoutButtonChannelSmall else R.id.frameLayoutButtonChannel, ChannelButtonFragment.fragment(user?.login ?: "", false))
         transaction?.disallowAddToBackStack()

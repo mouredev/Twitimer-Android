@@ -1,5 +1,6 @@
 package com.mouredev.twitimer.usecases.settings
 
+import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
@@ -9,6 +10,7 @@ import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import com.mouredev.twitimer.R
 import com.mouredev.twitimer.databinding.ActivitySettingsBinding
+import com.mouredev.twitimer.model.domain.UserSchedule
 import com.mouredev.twitimer.usecases.common.rows.ScheduleRecyclerViewAdapter
 import com.mouredev.twitimer.util.FontSize
 import com.mouredev.twitimer.util.UIUtil
@@ -37,6 +39,7 @@ class SettingsActivity : AppCompatActivity() {
         // Setup
         localize()
         setup()
+        load()
     }
 
     override fun onSupportNavigateUp(): Boolean {
@@ -84,7 +87,7 @@ class SettingsActivity : AppCompatActivity() {
 
         binding.buttonSaveSettings.enable(false)
         binding.buttonSaveSettings.primary {
-            //viewModel.save(context, adapter.schedules)
+            viewModel.save(this)
             binding.buttonSaveSettings.enable(false)
         }
 
@@ -96,12 +99,13 @@ class SettingsActivity : AppCompatActivity() {
 
         // Discord
 
+        binding.editTextDiscord.font(FontSize.BODY, color = ContextCompat.getColor(this, R.color.text))
         binding.editTextDiscord.actionDone()
 
-        binding.editTextDiscord.setOnEditorActionListener { _, actionId, _ ->
+        binding.editTextDiscord.setOnEditorActionListener { textView, actionId, _ ->
             if (actionId == EditorInfo.IME_ACTION_DONE) {
-                //schedule.title = binding.editTextDiscord.text.toString()
-                //hideSoftInput()
+                viewModel.settings.discord = binding.editTextDiscord.text.toString()
+                textView?.hideSoftInput()
                 binding.editTextDiscord.clearFocus()
                 return@setOnEditorActionListener true
             } else {
@@ -112,8 +116,8 @@ class SettingsActivity : AppCompatActivity() {
         binding.editTextDiscord.addTextChangedListener(object : TextWatcher {
 
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
-                //schedule.title = binding.editTextDiscord.text.toString()
-                //updated(schedule)
+                viewModel.settings.discord = binding.editTextDiscord.text.toString()
+                checkEnableSave()
             }
 
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
@@ -127,12 +131,13 @@ class SettingsActivity : AppCompatActivity() {
 
         // YouTube
 
+        binding.editTextYouTube.font(FontSize.BODY, color = ContextCompat.getColor(this, R.color.text))
         binding.editTextYouTube.actionDone()
 
-        binding.editTextYouTube.setOnEditorActionListener { _, actionId, _ ->
+        binding.editTextYouTube.setOnEditorActionListener { textView, actionId, _ ->
             if (actionId == EditorInfo.IME_ACTION_DONE) {
-                //schedule.title = binding.editTextDiscord.text.toString()
-                //hideSoftInput()
+                viewModel.settings.youtube = binding.editTextYouTube.text.toString()
+                textView?.hideSoftInput()
                 binding.editTextYouTube.clearFocus()
                 return@setOnEditorActionListener true
             } else {
@@ -143,8 +148,8 @@ class SettingsActivity : AppCompatActivity() {
         binding.editTextYouTube.addTextChangedListener(object : TextWatcher {
 
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
-                //schedule.title = binding.editTextDiscord.text.toString()
-                //updated(schedule)
+                viewModel.settings.youtube = binding.editTextYouTube.text.toString()
+                checkEnableSave()
             }
 
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
@@ -158,12 +163,13 @@ class SettingsActivity : AppCompatActivity() {
 
         // Twitter
 
+        binding.editTextTwitter.font(FontSize.BODY, color = ContextCompat.getColor(this, R.color.text))
         binding.editTextTwitter.actionDone()
 
-        binding.editTextTwitter.setOnEditorActionListener { _, actionId, _ ->
+        binding.editTextTwitter.setOnEditorActionListener { textView, actionId, _ ->
             if (actionId == EditorInfo.IME_ACTION_DONE) {
-                //schedule.title = binding.editTextDiscord.text.toString()
-                //hideSoftInput()
+                viewModel.settings.twitter = binding.editTextTwitter.text.toString()
+                textView?.hideSoftInput()
                 binding.editTextTwitter.clearFocus()
                 return@setOnEditorActionListener true
             } else {
@@ -174,8 +180,8 @@ class SettingsActivity : AppCompatActivity() {
         binding.editTextTwitter.addTextChangedListener(object : TextWatcher {
 
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
-                //schedule.title = binding.editTextDiscord.text.toString()
-                //updated(schedule)
+                viewModel.settings.twitter = binding.editTextTwitter.text.toString()
+                checkEnableSave()
             }
 
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
@@ -189,12 +195,13 @@ class SettingsActivity : AppCompatActivity() {
 
         // Instagram
 
+        binding.editTextInstagram.font(FontSize.BODY, color = ContextCompat.getColor(this, R.color.text))
         binding.editTextInstagram.actionDone()
 
-        binding.editTextInstagram.setOnEditorActionListener { _, actionId, _ ->
+        binding.editTextInstagram.setOnEditorActionListener { textView, actionId, _ ->
             if (actionId == EditorInfo.IME_ACTION_DONE) {
-                //schedule.title = binding.editTextDiscord.text.toString()
-                //hideSoftInput()
+                viewModel.settings.instagram = binding.editTextInstagram.text.toString()
+                textView?.hideSoftInput()
                 binding.editTextInstagram.clearFocus()
                 return@setOnEditorActionListener true
             } else {
@@ -205,8 +212,8 @@ class SettingsActivity : AppCompatActivity() {
         binding.editTextInstagram.addTextChangedListener(object : TextWatcher {
 
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
-                //schedule.title = binding.editTextDiscord.text.toString()
-                //updated(schedule)
+                viewModel.settings.instagram = binding.editTextInstagram.text.toString()
+                checkEnableSave()
             }
 
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
@@ -220,12 +227,13 @@ class SettingsActivity : AppCompatActivity() {
 
         // TikTok
 
+        binding.editTextTikTok.font(FontSize.BODY, color = ContextCompat.getColor(this, R.color.text))
         binding.editTextTikTok.actionDone()
 
-        binding.editTextTikTok.setOnEditorActionListener { _, actionId, _ ->
+        binding.editTextTikTok.setOnEditorActionListener { textView, actionId, _ ->
             if (actionId == EditorInfo.IME_ACTION_DONE) {
-                //schedule.title = binding.editTextDiscord.text.toString()
-                //hideSoftInput()
+                viewModel.settings.tiktok = binding.editTextTikTok.text.toString()
+                textView?.hideSoftInput()
                 binding.editTextTikTok.clearFocus()
                 return@setOnEditorActionListener true
             } else {
@@ -236,8 +244,8 @@ class SettingsActivity : AppCompatActivity() {
         binding.editTextTikTok.addTextChangedListener(object : TextWatcher {
 
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
-                //schedule.title = binding.editTextDiscord.text.toString()
-                //updated(schedule)
+                viewModel.settings.tiktok = binding.editTextTikTok.text.toString()
+                checkEnableSave()
             }
 
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
@@ -248,6 +256,21 @@ class SettingsActivity : AppCompatActivity() {
                 // Do nothing
             }
         })
+
     }
+
+    private fun load() {
+
+        binding.editTextDiscord.setText(viewModel.settings.discord)
+        binding.editTextYouTube.setText(viewModel.settings.youtube)
+        binding.editTextTwitter.setText(viewModel.settings.twitter)
+        binding.editTextInstagram.setText(viewModel.settings.instagram)
+        binding.editTextTikTok.setText(viewModel.settings.tiktok)
+    }
+
+    private fun checkEnableSave() {
+        binding.buttonSaveSettings.enable(viewModel.checkEnableSave(this))
+    }
+
 
 }

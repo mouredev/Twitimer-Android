@@ -14,4 +14,15 @@
         android:src="@drawable/user"
         app:tint="@color/background" />
 
+    <ImageButton
+        android:id="@+id/imageButtonSettings"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:layout_gravity="bottom|end"
+        android:background="@drawable/item_round_primary"
+        android:padding="8dp"
+        android:scaleType="fitCenter"
+        app:srcCompat="@drawable/settings"
+        app:tint="@color/light" />
+
 </FrameLayout>

@@ -140,6 +140,19 @@ class Session {
         }
     }
 
+    fun save(context: Context, settings: UserSettings) {
+
+        val savedSettings = savedSettings(context)
+
+        if (savedSettings != settings) {
+            user?.settings = settings
+            user?.let { user ->
+                save(context, user)
+                FirebaseRDBService.saveSettings(user)
+            }
+        }
+    }
+
     fun saveFollow(context: Context, followedUser: User) {
 
         val login = followedUser.login ?: ""
@@ -376,6 +389,14 @@ class Session {
 
         PreferencesProvider.string(context, PreferencesKey.AUTH_USER)?.let {
             return User.fromJson(it).schedule
+        }
+        return null
+    }
+
+    fun savedSettings(context: Context): UserSettings? {
+
+        PreferencesProvider.string(context, PreferencesKey.AUTH_USER)?.let {
+            return User.fromJson(it).settings
         }
         return null
     }

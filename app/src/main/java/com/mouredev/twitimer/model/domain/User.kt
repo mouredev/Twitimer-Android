@@ -280,11 +280,11 @@ enum class WeekdayType(val index: Int) {
 }
 
 data class UserSettings(
-    val discord: String? = null,
-    val youtube: String? = null,
-    val twitter: String? = null,
-    val instagram: String? = null,
-    val tiktok: String? = null
+    var discord: String? = null,
+    var youtube: String? = null,
+    var twitter: String? = null,
+    var instagram: String? = null,
+    var tiktok: String? = null
 ) {
 
     fun toJSON(): MutableMap<String, String> {

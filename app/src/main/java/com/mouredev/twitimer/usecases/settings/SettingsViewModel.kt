@@ -1,13 +1,20 @@
 package com.mouredev.twitimer.usecases.settings
 
+import android.content.Context
 import androidx.lifecycle.ViewModel
 import com.mouredev.twitimer.R
+import com.mouredev.twitimer.model.domain.UserSettings
+import com.mouredev.twitimer.model.session.Session
 
 /**
  * Created by MoureDev by Brais Moure on 10/8/21.
  * www.mouredev.com
  */
 class SettingsViewModel : ViewModel() {
+
+    // Properties
+
+    val settings = Session.instance.user?.settings ?: UserSettings()
 
     // Localization
 
@@ -22,5 +29,22 @@ class SettingsViewModel : ViewModel() {
     val saveText = R.string.settings_savesettings
     val okText = R.string.accept
     val cancelText = R.string.cancel
+
+    // Public
+
+    fun checkEnableSave(context: Context): Boolean {
+
+        val savedSettings = Session.instance.savedSettings(context)
+        val currentSettings = Session.instance.user?.settings
+
+        if (savedSettings != currentSettings) {
+            return true
+        }
+        return  false
+    }
+
+    fun save(context: Context) {
+        Session.instance.save(context, settings)
+    }
 
 }
