@@ -53,4 +53,8 @@ class SettingsViewModel : ViewModel() {
         }
     }
 
+    fun restoreSaveSettings(context: Context) {
+        Session.instance.user?.settings = Session.instance.savedSettings(context)
+    }
+
 }

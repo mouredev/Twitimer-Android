@@ -71,7 +71,12 @@ class UserFragment : Fragment() {
         data()
     }
 
-    // Public
+    override fun onResume() {
+        super.onResume()
+
+        // Setup
+        setupHeader()
+    }
 
     // Private
 
@@ -85,9 +90,6 @@ class UserFragment : Fragment() {
     private fun setup() {
 
         val transaction = activity?.supportFragmentManager?.beginTransaction()
-        viewModel.getUser()?.let { user ->
-            transaction?.replace(R.id.frameLayoutUserHeader, UserHeaderFragment.fragment(user, viewModel.readOnly))
-        }
 
         val schedules = viewModel.getFilterSchedule()
         infoFragment = if (schedules.isNullOrEmpty()) InfoRouter().fragment(InfoViewType.SCHEDULE) else InfoRouter().fragment(InfoViewType.STREAMER)
@@ -150,6 +152,16 @@ class UserFragment : Fragment() {
 
         setupBody(schedules)
         setupButtons()
+    }
+
+    private fun setupHeader() {
+
+        val transaction = activity?.supportFragmentManager?.beginTransaction()
+        viewModel.getUser()?.let { user ->
+            transaction?.replace(R.id.frameLayoutUserHeader, UserHeaderFragment.fragment(user, viewModel.readOnly))
+        }
+        transaction?.disallowAddToBackStack()
+        transaction?.commit()
     }
 
     private fun setupBody(schedule: List<UserSchedule>?) {
