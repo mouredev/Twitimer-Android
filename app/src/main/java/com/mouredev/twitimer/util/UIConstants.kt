@@ -30,8 +30,10 @@ enum class FontSize(val size: Int) {
 
 enum class Size(val size: Int) {
     NONE(0),
+    EXTRA_SMALL(2),
     VERY_SMALL(4),
     SMALL(8),
+    SMALL_MEDIUM(10),
     MEDIUM(16),
     MEDIUM_BIG(24),
     BIG(32),
