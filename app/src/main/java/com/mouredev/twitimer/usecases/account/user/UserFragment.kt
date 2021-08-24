@@ -117,6 +117,7 @@ class UserFragment : Fragment() {
                     if (viewModel.isStreamer != isChecked) {
                         viewModel.save(context, isChecked)
                         setupBody(schedules)
+                        setupHeader()
                         setupButtons()
                     }
                 }

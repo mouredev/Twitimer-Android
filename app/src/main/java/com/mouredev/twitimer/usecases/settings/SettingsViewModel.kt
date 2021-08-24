@@ -15,6 +15,7 @@ class SettingsViewModel : ViewModel() {
     // Properties
 
     val settings = Session.instance.user?.settings ?: UserSettings()
+    val streamer = Session.instance.user?.streamer ?: false
 
     // Localization
 

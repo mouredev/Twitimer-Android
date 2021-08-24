@@ -4,12 +4,15 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.widget.EditText
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import com.mouredev.twitimer.R
 import com.mouredev.twitimer.databinding.ActivitySettingsBinding
+import com.mouredev.twitimer.usecases.common.views.info.InfoRouter
+import com.mouredev.twitimer.usecases.common.views.info.InfoViewType
 import com.mouredev.twitimer.util.FontSize
 import com.mouredev.twitimer.util.UIUtil
 import com.mouredev.twitimer.util.extension.*
@@ -43,7 +46,7 @@ class SettingsActivity : AppCompatActivity() {
     }
 
     override fun onSupportNavigateUp(): Boolean {
-        this.onBackPressed()
+        this.onBackPressed() 
         return super.onSupportNavigateUp()
     }
 
@@ -78,23 +81,7 @@ class SettingsActivity : AppCompatActivity() {
         setupSocialMedia()
 
         // Footer
-
-        binding.buttonCloseSession.secondary {
-
-            UIUtil.showAlert(this, getString(viewModel.closeText), getString(viewModel.closeAlertText), getString(viewModel.okText), {
-                hideSoftInput()
-                viewModel.close(this)
-                currentEditText?.clearFocus()
-            }, getString(viewModel.cancelText))
-        }
-
-        binding.buttonSaveSettings.enable(false)
-        binding.buttonSaveSettings.primary {
-            hideSoftInput()
-            viewModel.save(this)
-            binding.buttonSaveSettings.enable(false)
-            currentEditText?.clearFocus()
-        }
+        setupFooter()
 
     }
 
@@ -269,13 +256,48 @@ class SettingsActivity : AppCompatActivity() {
 
     }
 
+    private fun setupFooter() {
+
+        binding.buttonCloseSession.secondary {
+
+            UIUtil.showAlert(this, getString(viewModel.closeText), getString(viewModel.closeAlertText), getString(viewModel.okText), {
+                hideSoftInput()
+                viewModel.close(this)
+                currentEditText?.clearFocus()
+            }, getString(viewModel.cancelText))
+        }
+
+        binding.buttonSaveSettings.enable(false)
+        binding.buttonSaveSettings.primary {
+            hideSoftInput()
+            viewModel.save(this)
+            binding.buttonSaveSettings.enable(false)
+            currentEditText?.clearFocus()
+        }
+    }
+
     private fun load() {
 
-        binding.editTextDiscord.setText(viewModel.settings.discord)
-        binding.editTextYouTube.setText(viewModel.settings.youtube)
-        binding.editTextTwitter.setText(viewModel.settings.twitter)
-        binding.editTextInstagram.setText(viewModel.settings.instagram)
-        binding.editTextTikTok.setText(viewModel.settings.tiktok)
+        if (viewModel.streamer) {
+
+            binding.frameLayoutInfo.visibility = View.GONE
+
+            binding.editTextDiscord.setText(viewModel.settings.discord)
+            binding.editTextYouTube.setText(viewModel.settings.youtube)
+            binding.editTextTwitter.setText(viewModel.settings.twitter)
+            binding.editTextInstagram.setText(viewModel.settings.instagram)
+            binding.editTextTikTok.setText(viewModel.settings.tiktok)
+
+        } else {
+
+            binding.layoutSettings.visibility = View.GONE
+            binding.buttonSaveSettings.visibility = View.GONE
+
+            val transaction = supportFragmentManager.beginTransaction()
+            transaction.replace(R.id.frameLayoutInfo, InfoRouter().fragment(InfoViewType.STREAMER))
+            transaction.disallowAddToBackStack()
+            transaction.commit()
+        }
     }
 
     private fun checkEnableSave() {

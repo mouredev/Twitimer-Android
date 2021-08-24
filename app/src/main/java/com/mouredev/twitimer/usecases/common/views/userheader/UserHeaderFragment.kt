@@ -111,36 +111,39 @@ class UserHeaderFragment : Fragment() {
         binding.imageButtonInstagram.visibility = View.GONE
         binding.imageButtonTikTok.visibility = View.GONE
 
-        context?.let { context ->
-            user?.settings?.let { settings ->
-                if (settings.discord?.isNotBlank() == true) {
-                    binding.imageButtonDiscord.visibility = View.VISIBLE
-                    binding.imageButtonDiscord.setOnClickListener {
-                        Util.openBrowser(context, "${Constants.DISCORD_URI}${settings.discord?.removeSocialInvalidCharacters()}")
+        if (user?.streamer == true) {
+
+            context?.let { context ->
+                user?.settings?.let { settings ->
+                    if (settings.discord?.isNotBlank() == true) {
+                        binding.imageButtonDiscord.visibility = View.VISIBLE
+                        binding.imageButtonDiscord.setOnClickListener {
+                            Util.openBrowser(context, "${Constants.DISCORD_URI}${settings.discord?.removeSocialInvalidCharacters()}")
+                        }
                     }
-                }
-                if (settings.youtube?.isNotBlank() == true) {
-                    binding.imageButtonYouTube.visibility = View.VISIBLE
-                    binding.imageButtonYouTube.setOnClickListener {
-                        Util.openBrowser(context, "${Constants.YOUTUBE_URI}${settings.youtube?.removeSocialInvalidCharacters()}")
+                    if (settings.youtube?.isNotBlank() == true) {
+                        binding.imageButtonYouTube.visibility = View.VISIBLE
+                        binding.imageButtonYouTube.setOnClickListener {
+                            Util.openBrowser(context, "${Constants.YOUTUBE_URI}${settings.youtube?.removeSocialInvalidCharacters()}")
+                        }
                     }
-                }
-                if (settings.twitter?.isNotBlank() == true) {
-                    binding.imageButtonTwitter.visibility = View.VISIBLE
-                    binding.imageButtonTwitter.setOnClickListener {
-                        Util.openBrowser(context, "${Constants.TWITTER_URI}${settings.twitter?.removeSocialInvalidCharacters()}")
+                    if (settings.twitter?.isNotBlank() == true) {
+                        binding.imageButtonTwitter.visibility = View.VISIBLE
+                        binding.imageButtonTwitter.setOnClickListener {
+                            Util.openBrowser(context, "${Constants.TWITTER_URI}${settings.twitter?.removeSocialInvalidCharacters()}")
+                        }
                     }
-                }
-                if (settings.instagram?.isNotBlank() == true) {
-                    binding.imageButtonInstagram.visibility = View.VISIBLE
-                    binding.imageButtonInstagram.setOnClickListener {
-                        Util.openBrowser(context, "${Constants.INSTAGRAM_URI}${settings.instagram?.removeSocialInvalidCharacters()}")
+                    if (settings.instagram?.isNotBlank() == true) {
+                        binding.imageButtonInstagram.visibility = View.VISIBLE
+                        binding.imageButtonInstagram.setOnClickListener {
+                            Util.openBrowser(context, "${Constants.INSTAGRAM_URI}${settings.instagram?.removeSocialInvalidCharacters()}")
+                        }
                     }
-                }
-                if (settings.tiktok?.isNotBlank() == true) {
-                    binding.imageButtonTikTok.visibility = View.VISIBLE
-                    binding.imageButtonTikTok.setOnClickListener {
-                        Util.openBrowser(context, "${Constants.TIKTOK_URI}${settings.tiktok?.removeSocialInvalidCharacters()}")
+                    if (settings.tiktok?.isNotBlank() == true) {
+                        binding.imageButtonTikTok.visibility = View.VISIBLE
+                        binding.imageButtonTikTok.setOnClickListener {
+                            Util.openBrowser(context, "${Constants.TIKTOK_URI}${settings.tiktok?.removeSocialInvalidCharacters()}")
+                        }
                     }
                 }
             }

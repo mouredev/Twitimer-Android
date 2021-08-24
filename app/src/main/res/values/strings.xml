@@ -77,7 +77,7 @@
     <string name="info.channel.share">Hello @[%s]! Do you know #Twitimer?\n\nIt is an App for streamers to add their broadcast schedules on Twitch and notify their audience every time they do.\n\nIt can be downloaded for iOS and Android for free from https://twitimer.com\n\nThank you!</string>
 
     <string name="info.streamer.title">Are you a streamer?</string>
-    <string name="info.streamer.body">If you make live broadcasts, activate the option \"I\'m streamer\" to configure your schedules and notify viewers.</string>
+    <string name="info.streamer.body">If you make live broadcasts, activate the option \"I\'m streamer\" to configure your schedules, social media and notify viewers.</string>
     <string name="info.streamer.advice.1">Set, update and save the schedules of your weekly broadcasts and specific events.</string>
 
     <string name="info.auth.title">Log in securely with your Twitch account</string>
