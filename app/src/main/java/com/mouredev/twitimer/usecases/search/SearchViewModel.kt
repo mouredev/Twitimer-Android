@@ -33,7 +33,7 @@ class SearchViewModel : ViewModel() {
     var users = Session.instance.streamers ?: arrayListOf()
         private set
 
-    val streamersCount get() = Session.instance.user?.followedUsers?.count() ?: 0
+    val streamersCount get() = Session.instance.streamers?.count() ?: 0
 
     var search: List<UserSearch> = arrayListOf()
         private set
