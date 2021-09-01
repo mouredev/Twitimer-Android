@@ -13,7 +13,7 @@ android {
         applicationId "com.mouredev.twitimer"
         minSdkVersion 23
         targetSdkVersion 30
-        versionCode 11
+        versionCode 12
         versionName "1.2"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
