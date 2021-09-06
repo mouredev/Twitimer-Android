@@ -23,10 +23,11 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
+            android:id="@+id/layoutContent"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:paddingLeft="32dp">
+            android:paddingStart="32dp">
 
             <ImageView
                 android:id="@+id/imageViewAvatar"

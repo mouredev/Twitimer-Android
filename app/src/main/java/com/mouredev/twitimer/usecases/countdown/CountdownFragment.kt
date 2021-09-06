@@ -106,12 +106,20 @@ class CountdownFragment : Fragment(), InfoFragmentListener {
             binding.buttonUpdate.secondary {
                 viewModel.reload(context)
             }
+
+            binding.swipeRefreshCountdown.setOnRefreshListener {
+                viewModel.reload(context)
+            }
         }
+
+
     }
 
     private fun data() {
 
         viewModel.loading.observe(viewLifecycleOwner, Observer {
+
+            binding.swipeRefreshCountdown.isRefreshing = false
 
             if (it) {
                 searching(true)

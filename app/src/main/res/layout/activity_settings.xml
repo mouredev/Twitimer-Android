@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".usecases.settings.SettingsActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayoutSettings"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@drawable/background_rounded_container"
+        app:layout_constraintBottom_toTopOf="@+id/layoutButtons"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <FrameLayout
+            android:id="@+id/frameLayoutInfo"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="32dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <LinearLayout
+                android:id="@+id/layoutSettings"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView
+                    android:id="@+id/textViewSocialMedia"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/settings.socialmedia"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:paddingTop="16dp">
+
+                    <ImageView
+                        android:id="@+id/imageViewDiscord"
+                        android:layout_width="24dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginEnd="16dp"
+                        app:srcCompat="@drawable/discord"
+                        app:tint="@color/text" />
+
+                    <EditText
+                        android:id="@+id/editTextDiscord"
+                        android:layout_width="match_parent"
+                        android:layout_height="32dp"
+                        android:background="@drawable/item_input"
+                        android:ems="10"
+                        android:inputType="textPersonName"
+                        android:paddingStart="8dp"
+                        android:paddingEnd="8dp"
+                        android:theme="@style/CustomSpinnerTheme" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:paddingTop="8dp">
+
+                    <ImageView
+                        android:id="@+id/imageViewYouTube"
+                        android:layout_width="24dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginEnd="16dp"
+                        app:srcCompat="@drawable/youtube"
+                        app:tint="@color/text" />
+
+                    <EditText
+                        android:id="@+id/editTextYouTube"
+                        android:layout_width="match_parent"
+                        android:layout_height="32dp"
+                        android:background="@drawable/item_input"
+                        android:ems="10"
+                        android:inputType="textPersonName"
+                        android:paddingStart="8dp"
+                        android:paddingEnd="8dp"
+                        android:theme="@style/CustomSpinnerTheme" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:paddingTop="8dp">
+
+                    <ImageView
+                        android:id="@+id/imageViewTwitter"
+                        android:layout_width="24dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginEnd="16dp"
+                        app:srcCompat="@drawable/twitter"
+                        app:tint="@color/text" />
+
+                    <EditText
+                        android:id="@+id/editTextTwitter"
+                        android:layout_width="match_parent"
+                        android:layout_height="32dp"
+                        android:background="@drawable/item_input"
+                        android:ems="10"
+                        android:inputType="textPersonName"
+                        android:paddingStart="8dp"
+                        android:paddingEnd="8dp"
+                        android:theme="@style/CustomSpinnerTheme" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:paddingTop="8dp">
+
+                    <ImageView
+                        android:id="@+id/imageViewInstagram"
+                        android:layout_width="24dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginEnd="16dp"
+                        app:srcCompat="@drawable/instagram"
+                        app:tint="@color/text" />
+
+                    <EditText
+                        android:id="@+id/editTextInstagram"
+                        android:layout_width="match_parent"
+                        android:layout_height="32dp"
+                        android:background="@drawable/item_input"
+                        android:ems="10"
+                        android:inputType="textPersonName"
+                        android:paddingStart="8dp"
+                        android:paddingEnd="8dp"
+                        android:theme="@style/CustomSpinnerTheme" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:paddingTop="8dp">
+
+                    <ImageView
+                        android:id="@+id/imageViewTikTok"
+                        android:layout_width="24dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginEnd="16dp"
+                        app:srcCompat="@drawable/tiktok"
+                        app:tint="@color/text" />
+
+                    <EditText
+                        android:id="@+id/editTextTikTok"
+                        android:layout_width="match_parent"
+                        android:layout_height="32dp"
+                        android:background="@drawable/item_input"
+                        android:ems="10"
+                        android:inputType="textPersonName"
+                        android:paddingStart="8dp"
+                        android:paddingEnd="8dp"
+                        android:theme="@style/CustomSpinnerTheme" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+        </ScrollView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layoutButtons"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/shadow_rectangle"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/buttonCloseSession"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/secondary_button_round"
+            android:text="Action button"
+            android:textAllCaps="false"
+            app:cornerRadius="24dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/buttonSaveSettings"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/buttonSaveSettings"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/primary_button_round"
+            android:text="Action button"
+            android:textAllCaps="false"
+            app:cornerRadius="24dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/buttonCloseSession"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

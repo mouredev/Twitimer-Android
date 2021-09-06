@@ -18,7 +18,8 @@ data class DatabaseUser(
     val offlineImageUrl: String? = null,
     val streamer: Int? = null,
     val schedule: List<DatabaseUserSchedule>? = null,
-    val followedUsers: MutableList<String>? = null
+    val followedUsers: MutableList<String>? = null,
+    var settings: DatabaseUserSettings? = null
 ) {
 
     fun toUser(): User {
@@ -31,6 +32,7 @@ data class DatabaseUser(
         user.streamer = streamer == 1
         user.schedule = schedule?.toMutableList()
         user.followedUsers = followedUsers ?: arrayListOf()
+        user.settings = settings?.toUserSettings()
 
         return  user
     }
@@ -49,7 +51,20 @@ data class DatabaseUserSchedule(
         val weekDayType = WeekdayType.valueFrom(weekDay ?: 0)
         val date = date?.toDate()
         return UserSchedule(enable == 1, weekDayType, weekDayType, date ?: Date(), duration ?: 1, title ?: "")
+    }
 
+}
+
+data class DatabaseUserSettings(
+    val discord: String? = null,
+    val youtube: String? = null,
+    val twitter: String? = null,
+    val instagram: String? = null,
+    val tiktok: String? = null
+) {
+
+    fun toUserSettings(): UserSettings {
+        return UserSettings(discord, youtube, twitter, instagram, tiktok)
     }
 
 }

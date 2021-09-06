@@ -35,7 +35,6 @@ class UserFragment : Fragment() {
     private val binding get() = _binding!!
 
     private lateinit var viewModel: UserViewModel
-    private var listener: UserFragmentListener? = null
     private var infoFragment: InfoFragment? = null
 
     // Initialization
@@ -66,20 +65,17 @@ class UserFragment : Fragment() {
             }
         }
 
-        if (listener != null || viewModel.getUser() != null) {
-
-            // Setup
-            localize()
-            setup()
-            data()
-        }
-
+        // Setup
+        localize()
+        setup()
+        data()
     }
 
-    // Public
+    override fun onResume() {
+        super.onResume()
 
-    fun setListener(listener: UserFragmentListener) {
-        this.listener = listener
+        // Setup
+        setupHeader()
     }
 
     // Private
@@ -88,17 +84,12 @@ class UserFragment : Fragment() {
 
         binding.textViewSchedule.text = getText(viewModel.scheduleText)
         binding.textViewStreamer.text = getText(viewModel.streamerText)
-
-        binding.buttonCloseSession.text = getText(viewModel.closeText)
         binding.buttonSaveSchedule.text = getText(viewModel.saveText)
     }
 
     private fun setup() {
 
         val transaction = activity?.supportFragmentManager?.beginTransaction()
-        viewModel.getUser()?.let { user ->
-            transaction?.replace(R.id.frameLayoutUserHeader, UserHeaderFragment.fragment(user))
-        }
 
         val schedules = viewModel.getFilterSchedule()
         infoFragment = if (schedules.isNullOrEmpty()) InfoRouter().fragment(InfoViewType.SCHEDULE) else InfoRouter().fragment(InfoViewType.STREAMER)
@@ -126,18 +117,9 @@ class UserFragment : Fragment() {
                     if (viewModel.isStreamer != isChecked) {
                         viewModel.save(context, isChecked)
                         setupBody(schedules)
+                        setupHeader()
                         setupButtons()
                     }
-                }
-
-                binding.buttonCloseSession.secondary {
-
-                    UIUtil.showAlert(context, getString(viewModel.closeText), getString(viewModel.closeAlertText), getString(viewModel.okText), {
-
-                        view?.hideSoftInput()
-                        viewModel.close(context, listener)
-
-                    }, getString(viewModel.cancelText))
                 }
 
                 binding.buttonSaveSchedule.enable(false)
@@ -171,6 +153,16 @@ class UserFragment : Fragment() {
 
         setupBody(schedules)
         setupButtons()
+    }
+
+    private fun setupHeader() {
+
+        val transaction = activity?.supportFragmentManager?.beginTransaction()
+        viewModel.getUser()?.let { user ->
+            transaction?.replace(R.id.frameLayoutUserHeader, UserHeaderFragment.fragment(user, viewModel.readOnly))
+        }
+        transaction?.disallowAddToBackStack()
+        transaction?.commit()
     }
 
     private fun setupBody(schedule: List<UserSchedule>?) {

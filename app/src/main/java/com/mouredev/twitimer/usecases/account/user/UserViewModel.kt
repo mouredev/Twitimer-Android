@@ -1,7 +1,6 @@
 package com.mouredev.twitimer.usecases.account.user
 
 import android.content.Context
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.mouredev.twitimer.R
 import com.mouredev.twitimer.model.domain.User
@@ -10,7 +9,6 @@ import com.mouredev.twitimer.model.domain.WeekdayType
 import com.mouredev.twitimer.model.session.Session
 import com.mouredev.twitimer.provider.preferences.PreferencesKey
 import com.mouredev.twitimer.provider.preferences.PreferencesProvider
-import com.mouredev.twitimer.provider.services.firebase.FirebaseRDBService
 import java.util.*
 
 class UserViewModel : ViewModel() {
@@ -26,8 +24,6 @@ class UserViewModel : ViewModel() {
     val scheduleText = R.string.schedule
     val saveText = R.string.schedule_save
     val saveAlertText = R.string.user_saveschedule_alert_body
-    val closeText = R.string.user_closesession
-    val closeAlertText = R.string.user_closesession_alert_body
     val streamerText = R.string.user_streamer
     val syncAlertTitleText = R.string.user_syncschedule_alert_title
     val syncAlertBodyText = R.string.user_syncschedule_alert_body
@@ -57,13 +53,6 @@ class UserViewModel : ViewModel() {
 
     fun save(context: Context, schedule: MutableList<UserSchedule>) {
         Session.instance.save(context, schedule)
-    }
-
-    fun close(context: Context, listener: UserFragmentListener?) {
-
-        Session.instance.revoke(context) {
-            listener?.onClose()
-        }
     }
 
     fun syncSchedule(context: Context, completion: () -> Unit) {

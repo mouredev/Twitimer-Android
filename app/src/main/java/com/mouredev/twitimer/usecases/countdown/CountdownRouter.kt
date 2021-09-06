@@ -1,8 +1,6 @@
 package com.mouredev.twitimer.usecases.countdown
 
 import androidx.fragment.app.FragmentManager
-import com.mouredev.twitimer.usecases.account.user.UserFragment
-import com.mouredev.twitimer.usecases.account.user.UserFragmentListener
 import com.mouredev.twitimer.usecases.base.BaseFragmentRouter
 
 /**

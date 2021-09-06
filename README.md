@@ -13,6 +13,9 @@ Twitimer es una App gratuita para **[Android](https://play.google.com/store/apps
 
 * Por razones de seguridad debes añadir tu propio fichero de configuración de Firebase `google-services.json` con Realtime Database activo y las claves de acceso al API de Twitch en Remote Config con los valores `TwitchClientID` y `TwitchClientSecret`.
 * Es suficiente con abrir y ejecutar el proyecto desde Android Studio.
+* [Puedes ver todo el proceso en este tutorial en YouTube](https://youtu.be/_FLHGY_ATWA)
+
+<a href="https://youtu.be/_FLHGY_ATWA"><img src="http://i3.ytimg.com/vi/_FLHGY_ATWA/maxresdefault.jpg" style="height: 50%; width:50%;"/></a>
 
 ### ¿De qué forma utilizamos Twitimer para aprender programación?
 * Puedes acceder a su código fuente libremente.

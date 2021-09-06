@@ -77,7 +77,7 @@
     <string name="info.channel.share">¡Hola @[%s]! ¿Conoces #Twitimer?\n\nEs una App para que los streamers puedan añadir sus horarios de emisión en Twitch y notificar a su audiencia cada vez que hagan.\n\nSe puede descargar para iOS y Android de forma gratuita desde https://twitimer.com\n\n¡Gracias!</string>
 
     <string name="info.streamer.title">¿Eres streamer?</string>
-    <string name="info.streamer.body">Si realizas transmisiones en directo activa la opción \"Soy streamer\" para configurar tus horarios y notificar a los espectadores.</string>
+    <string name="info.streamer.body">Si realizas transmisiones en directo activa la opción \"Soy streamer\" para configurar tus horarios, redes sociales y notificar a los espectadores.</string>
     <string name="info.streamer.advice.1">Establece, actualiza y guarda los horarios de tus transmisiones semanales y eventos puntuales.</string>
 
     <string name="info.auth.title">Inicia sesión de forma segura con tu cuenta de Twitch</string>
@@ -94,5 +94,15 @@
     <string name="menu.site">Visita twitimer.com para consultar toda la información oficial</string>
     <string name="menu.onboarding">Visualiza de nuevo el tutorial de bienvenida</string>
     <string name="menu.version">Versión %s. Twitimer no posee ningún tipo de relación con Twitch Interactive, Inc. y todos sus servicios.</string>
+
+    <!-- Settings -->
+
+    <string name="settings.socialmedia">Redes sociales</string>
+    <string name="settings.discord.placeholder">Código de invitación de Discord</string>
+    <string name="settings.youtube.placeholder">Usuario de YouTube</string>
+    <string name="settings.twitter.placeholder">Usuario de Twitter</string>
+    <string name="settings.instagram.placeholder">Usuario de Instagram</string>
+    <string name="settings.tiktok.placeholder">Usuario de TikTok</string>
+    <string name="settings.savesettings">Guardar ajustes</string>
 
 </resources>

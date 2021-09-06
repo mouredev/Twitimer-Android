@@ -151,6 +151,15 @@
                     android:src="@drawable/instagram" />
 
                 <ImageButton
+                    android:id="@+id/imageButtonTikTok"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginEnd="16dp"
+                    android:background="@null"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/tiktok" />
+
+                <ImageButton
                     android:id="@+id/imageButtonGitHub"
                     android:layout_width="24dp"
                     android:layout_height="24dp"

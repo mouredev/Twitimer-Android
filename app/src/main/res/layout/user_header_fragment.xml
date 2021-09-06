@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -26,15 +27,17 @@
 
             <TextView
                 android:id="@+id/textViewUser"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:text="User" />
 
             <FrameLayout
-                android:id="@+id/frameLayoutButtonChannelSmall"
+                android:id="@+id/frameLayoutBroadcasterType"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp" />
+                android:layout_gravity="center_vertical"
+                android:layout_weight="0" />
 
         </LinearLayout>
 
@@ -50,11 +53,49 @@
             android:orientation="horizontal"
             android:paddingTop="8dp">
 
-            <FrameLayout
-                android:id="@+id/frameLayoutBroadcasterType"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="0" />
+            <ImageButton
+                android:id="@+id/imageButtonDiscord"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:background="@null"
+                android:scaleType="fitCenter"
+                android:src="@drawable/discord" />
+
+            <ImageButton
+                android:id="@+id/imageButtonYouTube"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginStart="10dp"
+                android:background="@null"
+                android:scaleType="fitCenter"
+                android:src="@drawable/youtube" />
+
+            <ImageButton
+                android:id="@+id/imageButtonTwitter"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginStart="10dp"
+                android:background="@null"
+                android:scaleType="fitCenter"
+                android:src="@drawable/twitter" />
+
+            <ImageButton
+                android:id="@+id/imageButtonInstagram"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginStart="10dp"
+                android:background="@null"
+                android:scaleType="fitCenter"
+                android:src="@drawable/instagram" />
+
+            <ImageButton
+                android:id="@+id/imageButtonTikTok"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginStart="10dp"
+                android:background="@null"
+                android:scaleType="fitCenter"
+                android:src="@drawable/tiktok" />
 
             <Space
                 android:layout_width="wrap_content"
@@ -68,5 +109,6 @@
                 android:layout_weight="0" />
 
         </LinearLayout>
+
     </LinearLayout>
 </LinearLayout>
