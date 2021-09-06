@@ -52,7 +52,6 @@ class AccountFragment : Fragment(), InfoFragmentListener, WebViewFragmentListene
         setup()
         data()
         viewModel.load()
-
     }
 
     override fun onResume() {

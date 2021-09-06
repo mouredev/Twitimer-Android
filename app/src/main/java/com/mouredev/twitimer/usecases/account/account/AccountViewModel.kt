@@ -14,6 +14,8 @@ class AccountViewModel : ViewModel() {
 
     val authorizeURL = TwitchService.authorizeURL
 
+    private var session: String? = null
+
     // Publisehd
 
     val authenticated: MutableLiveData<Boolean> = MutableLiveData()
@@ -24,9 +26,10 @@ class AccountViewModel : ViewModel() {
 
     fun load() {
         loading.postValue(false)
-        if (Session.instance.user?.login != null) {
+        Session.instance.user?.login?.let { login ->
+            session = login
             authenticated.postValue(true)
-        } else {
+        } ?: run {
             info.postValue(true)
         }
     }
@@ -47,7 +50,9 @@ class AccountViewModel : ViewModel() {
     }
 
     fun checkSession() {
-        if (Session.instance.user?.login == null) {
+        val login = Session.instance.user?.login
+        if (login == null && session != login) {
+            session = login
             load()
         }
     }
