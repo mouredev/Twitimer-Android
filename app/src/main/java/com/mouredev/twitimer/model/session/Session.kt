@@ -110,7 +110,7 @@ class Session {
                         success()
                     }, true)
                 })
-            }, failure)
+            }, failure, failure)
         }, failure)
     }
 
@@ -118,11 +118,9 @@ class Session {
 
         token?.accessToken?.let { accessToken ->
             TwitchService.revoke(accessToken, {
-                clear(context)
-                success()
+                clear(context, success)
             }, {
-                clear(context)
-                success()
+                clear(context, success)
             })
         }
     }
@@ -213,6 +211,11 @@ class Session {
                 reloadUser(context, completion, true)
             }, {
                 reloadUser(context, completion)
+            }, {
+                clear(context) {
+                    PreferencesProvider.set(context, PreferencesKey.ONBOARDING, true)
+                    completion()
+                }
             })
         }
     }
@@ -504,7 +507,7 @@ class Session {
         }
     }
 
-    private fun clear(context: Context) {
+    private fun clear(context: Context, completion: (() -> Unit)) {
 
         user?.followedUsers?.forEach { user ->
             setupNotification(false, user)
@@ -521,10 +524,10 @@ class Session {
 
         // Firebase Auth
         FirebaseAuth.getInstance().signOut()
-        firebaseAuth(context)
+        firebaseAuth(context, completion)
     }
 
-    private fun firebaseAuth(context: Context, completion: (() -> Unit)? = null) {
+    private fun firebaseAuth(context: Context, completion: (() -> Unit)) {
 
         // Firebase auth anónima y permanente para poder realizar operaciones autenticadas contra Firebase
         // TODO: Intentar integrar Twitch como sistema OAuth personalizado en Firebase
@@ -533,12 +536,12 @@ class Session {
                 authResult.user?.uid?.let { uid ->
                     PreferencesProvider.set(context, PreferencesKey.FIREBASE_AUTH_UID, uid)
                 }
-                completion?.invoke()
+                completion()
             }.addOnFailureListener {
-                completion?.invoke()
+                completion()
             }
         } else {
-            completion?.invoke()
+            completion()
         }
     }
 
