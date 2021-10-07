@@ -130,7 +130,7 @@ object TwitchService {
         })
     }
 
-    fun user(context: Context, success: (user: User) -> Unit, failure: () -> Unit, retry: Boolean = false) {
+    fun user(context: Context, success: (user: User) -> Unit, failure: () -> Unit, authFailure: () -> Unit, retry: Boolean = false) {
 
         val retrofit = Retrofit.Builder().baseUrl(TwitchServiceAPI.USER.baseUrl()).addConverterFactory(GsonConverterFactory.create()).build()
         val service = retrofit.create(TwitchAPIService::class.java)
@@ -141,13 +141,18 @@ object TwitchService {
                     success(user)
                 } ?: run {
                     val refreshToken = Session.instance.token?.refreshToken
-                    if (response.code() == AUTH_ERROR_STATUS_CODE && refreshToken != null && !retry) {
-                        refreshToken(context, refreshToken, success = {
-                            // Retry
-                            user(context, success, failure, true)
-                        }, failure = {
-                            failure()
-                        })
+                    if (response.code() == AUTH_ERROR_STATUS_CODE) {
+                        if (refreshToken != null && !retry) {
+                            refreshToken(context, refreshToken, success = {
+                                // Retry
+                                user(context, success, failure, authFailure, true)
+                            }, failure = {
+                                failure()
+                            })
+                        } else {
+                            // Close session
+                            authFailure()
+                        }
                     } else {
                         failure()
                     }
