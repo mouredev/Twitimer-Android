@@ -5,6 +5,16 @@
       <configuration PROFILE_NAME="Debug" CONFIG_NAME="Debug" />
     </configurations>
   </component>
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="app/src/main/res/layout/activity_menu.xml" value="0.32522522522522523" />
+        <entry key="app/src/main/res/layout/schedule_item.xml" value="0.32522522522522523" />
+        <entry key="app/src/main/res/layout/search_item.xml" value="0.32522522522522523" />
+        <entry key="app/src/main/res/layout/timer_item.xml" value="0.32522522522522523" />
+      </map>
+    </option>
+  </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="JDK" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
