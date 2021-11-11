@@ -142,7 +142,8 @@ class UserHeaderFragment : Fragment() {
                     if (settings.tiktok?.isNotBlank() == true) {
                         binding.imageButtonTikTok.visibility = View.VISIBLE
                         binding.imageButtonTikTok.setOnClickListener {
-                            Util.openBrowser(context, "${Constants.TIKTOK_URI}${settings.tiktok?.removeSocialInvalidCharacters()}")
+                            // Pasamos el user a minus ya que la App de TikTok es case sensitive
+                            Util.openBrowser(context, "${Constants.TIKTOK_URI}${settings.tiktok?.lowercase()?.removeSocialInvalidCharacters()}")
                         }
                     }
                 }
