@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.mouredev.twitimer.model.session.Session
 import com.mouredev.twitimer.provider.services.twitch.TwitchService
+import com.mouredev.twitimer.util.Constants
 import java.net.URL
 
 class AccountViewModel : ViewModel() {
@@ -36,7 +37,7 @@ class AccountViewModel : ViewModel() {
 
     fun selected(context: Context, uri: Uri, listener: AccountFragmentListener?) {
 
-        if (uri.host?.contains("localhost") == true) {
+        if (uri.host?.contains(Constants.TWITCH_REDIRECT_HOST) == true) {
             val authorizationCode = uri.getQueryParameter("code")
             authorizationCode?.let { authCode ->
                 loading.postValue(true)

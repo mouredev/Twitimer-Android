@@ -12,7 +12,8 @@ object Constants {
     const val TWITCH_AUTH_URI = "https://id.twitch.tv/oauth2/"
     const val TWITCH_API_URI = "https://api.twitch.tv/helix/"
     const val TWITCH_PROFILE_URI = "https://www.twitch.tv/"
-    const val TWITCH_REDIRECT_URI = "http://localhost"
+    const val TWITCH_REDIRECT_URI = "https://twitimer.com"
+    const val TWITCH_REDIRECT_HOST = "twitimer.com"
 
     // Remote
     const val REMOTE_TWITCH_CLIENT_ID = "TwitchClientID"
