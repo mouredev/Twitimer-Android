@@ -4,6 +4,7 @@ import android.app.DatePickerDialog
 import android.app.TimePickerDialog
 import android.content.Context
 import android.text.Editable
+import android.text.InputType
 import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
@@ -52,7 +53,7 @@ class ScheduleRecyclerViewAdapter(val context: Context, var schedules: MutableLi
 
             if (weekday == WeekdayType.CUSTOM) {
                 binding.imageViewClockIcon.visibility = View.GONE
-                binding.buttonDate.picker(ContextCompat.getColor(context, if (readOnly) R.color.light else R.color.primary))
+                binding.buttonDate.picker(ContextCompat.getColor(context, R.color.light))
                 binding.textViewWeekday.visibility = View.GONE
                 binding.imageViewCustom.visibility = View.VISIBLE
 
@@ -249,6 +250,8 @@ class ScheduleRecyclerViewAdapter(val context: Context, var schedules: MutableLi
             binding.editTextInfo.setBackgroundColor(ContextCompat.getColor(context, R.color.secondary))
             binding.editTextInfo.setTextColor(ContextCompat.getColor(context, R.color.light))
             binding.editTextInfo.isEnabled = false
+            binding.editTextInfo.layoutParams.height = ViewGroup.LayoutParams.WRAP_CONTENT
+            binding.editTextInfo.isSingleLine = false
         }
 
         return viewHolder
