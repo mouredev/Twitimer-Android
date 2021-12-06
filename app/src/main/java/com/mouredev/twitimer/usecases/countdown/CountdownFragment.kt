@@ -33,6 +33,7 @@ class CountdownFragment : Fragment(), InfoFragmentListener {
     private lateinit var viewModel: CountdownViewModel
     private var listener: CountdownFragmentListener? = null
     private var loaded = false
+    private var resumed = false
 
     // Initialization
 
@@ -61,6 +62,16 @@ class CountdownFragment : Fragment(), InfoFragmentListener {
         data()
         loaded = true
         load()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        if (resumed) {
+            context?.let { context ->
+                viewModel.load(context)
+            }
+        }
+        resumed = true
     }
 
     // Public
