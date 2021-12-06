@@ -178,6 +178,9 @@ class Session {
                 user?.followedUsers = mutableListOf()
             }
             user?.followedUsers?.add(login)
+            if (streamers == null) {
+                streamers = mutableListOf()
+            }
             streamers?.add(followedUser)
 
             setupNotification(true, login)
