@@ -59,6 +59,8 @@
     <string name="user.streamer">Soy streamer</string>
     <string name="user.syncschedule.alert.title">Sincronizar horario de Twitch</string>
     <string name="user.syncschedule.alert.body">¿Quieres sincronizar tu calendario recurrente de Twitch? Se sobrescribirá la programación de Twitimer.</string>
+    <string name="user.scheduleinfo.alert.title">Sincronización de horarios</string>
+    <string name="user.scheduleinfo.alert.body">Los horarios guardados desde Twitimer no sobrescribirán los de Twitch para evitar interferir en la plataforma y permitirte gestionarlos de forma más intuitiva y ágil.</string>
 
     <!-- Info -->
 

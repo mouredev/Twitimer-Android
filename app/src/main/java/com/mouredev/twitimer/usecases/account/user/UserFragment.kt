@@ -119,6 +119,9 @@ class UserFragment : Fragment() {
                         setupBody(schedules)
                         setupHeader()
                         setupButtons()
+                        if (isChecked) {
+                            UIUtil.showAlert(context, getString(viewModel.syncInfoAlertTitleText), getString(viewModel.syncInfoAlertBodyText), getString(viewModel.okText))
+                        }
                     }
                 }
 

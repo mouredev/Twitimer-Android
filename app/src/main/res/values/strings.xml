@@ -59,6 +59,8 @@
     <string name="user.streamer">I\'m a streamer</string>
     <string name="user.syncschedule.alert.title">Synchronize Twitch schedule</string>
     <string name="user.syncschedule.alert.body">Do you want to sync your recurring Twitch calendar? The Twitimer schedule will be overwritten.</string>
+    <string name="user.scheduleinfo.alert.title">Schedules synchronization</string>
+    <string name="user.scheduleinfo.alert.body">The schedules saved from Twitimer will not overwrite those of Twitch to avoid interfering with the platform and allow you to manage them in a more intuitive and agile way.</string>
 
     <!-- Info -->
 

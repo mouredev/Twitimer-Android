@@ -27,6 +27,8 @@ class UserViewModel : ViewModel() {
     val streamerText = R.string.user_streamer
     val syncAlertTitleText = R.string.user_syncschedule_alert_title
     val syncAlertBodyText = R.string.user_syncschedule_alert_body
+    val syncInfoAlertTitleText = R.string.user_scheduleinfo_alert_title
+    val syncInfoAlertBodyText = R.string.user_scheduleinfo_alert_body
     val okText = R.string.accept
     val cancelText = R.string.cancel
 
