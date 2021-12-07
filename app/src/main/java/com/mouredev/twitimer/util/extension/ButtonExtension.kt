@@ -51,6 +51,17 @@ fun AppCompatButton.secondary(listener: View.OnClickListener) {
     setOnClickListener(listener)
 }
 
+fun AppCompatButton.destroy(listener: View.OnClickListener) {
+
+    maxLines = 1
+    ellipsize = TextUtils.TruncateAt.END
+    setTextSize(TypedValue.COMPLEX_UNIT_SP, FontSize.BUTTON.size.toFloat())
+    setTextColor(ContextCompat.getColor(context, R.color.light))
+    setTypeface(Typeface.createFromAsset(context.assets, FontType.BOLD.path), Typeface.NORMAL)
+    background = ContextCompat.getDrawable(context, R.drawable.destroy_button_round)
+    setOnClickListener(listener)
+}
+
 fun Button.picker(color: Int = ContextCompat.getColor(context, R.color.dark)) {
 
     setTextSize(TypedValue.COMPLEX_UNIT_SP, FontSize.SUBHEAD.size.toFloat())

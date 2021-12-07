@@ -120,7 +120,9 @@ class UserFragment : Fragment() {
                         setupHeader()
                         setupButtons()
                         if (isChecked) {
-                            UIUtil.showAlert(context, getString(viewModel.syncInfoAlertTitleText), getString(viewModel.syncInfoAlertBodyText), getString(viewModel.okText))
+                            UIUtil.showAlert(context, getString(viewModel.syncInfoAlertTitleText), getString(viewModel.syncInfoAlertBodyText), getString(viewModel.okText), {
+                                checkShowScheduleAlert(context)
+                            })
                         }
                     }
                 }
@@ -145,12 +147,6 @@ class UserFragment : Fragment() {
                 binding.recyclerViewSchedule.adapter = ScheduleRecyclerViewAdapter(context, schedules, viewModel.readOnly) { schedule ->
                     checkEnableSave(context, schedule)
                 }
-            }
-
-            // Sync
-            if (viewModel.isStreamer && !viewModel.readOnly && !viewModel.firstSync(context)) {
-                PreferencesProvider.set(context, PreferencesKey.FIRST_SYNC, true)
-                syncSchedule(context)
             }
         }
 
@@ -230,6 +226,15 @@ class UserFragment : Fragment() {
 
     private fun checkEnableSave(context: Context, schedule: UserSchedule) {
         binding.buttonSaveSchedule.enable(viewModel.checkEnableSave(context, schedule))
+    }
+
+    private fun checkShowScheduleAlert(context: Context) {
+
+        // Sync
+        if (viewModel.isStreamer && !viewModel.readOnly && !viewModel.firstSync(context)) {
+            PreferencesProvider.set(context, PreferencesKey.FIRST_SYNC, true)
+            syncSchedule(context)
+        }
     }
 
 }

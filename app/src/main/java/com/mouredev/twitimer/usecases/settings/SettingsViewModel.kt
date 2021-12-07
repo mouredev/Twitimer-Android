@@ -28,6 +28,9 @@ class SettingsViewModel : ViewModel() {
     val closeText = R.string.user_closesession
     val closeAlertText = R.string.user_closesession_alert_body
     val saveText = R.string.settings_savesettings
+    val deleteTitleText = R.string.settings_deleteaccount_title
+    val deleteButtonText = R.string.settings_deleteaccount_button
+    val deleteAlertText = R.string.settings_deleteaccount_alert
     val okText = R.string.accept
     val cancelText = R.string.cancel
 
@@ -56,6 +59,13 @@ class SettingsViewModel : ViewModel() {
 
     fun restoreSaveSettings(context: Context) {
         Session.instance.user?.settings = Session.instance.savedSettings(context)
+    }
+
+    fun delete(context: SettingsActivity) {
+
+        Session.instance.delete(context) {
+            context.onBackPressed()
+        }
     }
 
 }

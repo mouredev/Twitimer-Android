@@ -68,6 +68,7 @@ class SettingsActivity : AppCompatActivity() {
         binding.editTextTikTok.hint = getText(viewModel.tiktokPlaceholder)
         binding.buttonCloseSession.text = getText(viewModel.closeText)
         binding.buttonSaveSettings.text = getText(viewModel.saveText)
+        binding.buttonDeleteAccount.text = getText(viewModel.deleteButtonText)
     }
 
     private fun setup() {
@@ -86,6 +87,8 @@ class SettingsActivity : AppCompatActivity() {
     }
 
     private fun setupSocialMedia() {
+
+        // Social media
 
         binding.textViewSocialMedia.font(FontSize.HEAD, color = ContextCompat.getColor(this, R.color.text))
 
@@ -254,6 +257,17 @@ class SettingsActivity : AppCompatActivity() {
             }
         })
 
+        // Delete account
+
+        binding.textViewDeleteAccount.font(FontSize.HEAD, color = ContextCompat.getColor(this, R.color.text))
+
+        binding.buttonDeleteAccount.destroy {
+            UIUtil.showAlert(this, getString(viewModel.deleteButtonText), getString(viewModel.deleteAlertText), getString(viewModel.deleteTitleText), {
+                hideSoftInput()
+                viewModel.delete(this)
+                currentEditText?.clearFocus()
+            }, getString(viewModel.cancelText), true)
+        }
     }
 
     private fun setupFooter() {

@@ -24,7 +24,7 @@ object UIUtil {
 
     // Alert
 
-    fun showAlert(context: Context, title: String, message: String, positive: String, positiveAction: (() -> Unit)? = null, negative: String? = null) {
+    fun showAlert(context: Context, title: String, message: String, positive: String, positiveAction: (() -> Unit)? = null, negative: String? = null, destroy: Boolean = false) {
 
         val builder = AlertDialog.Builder(context, R.style.CustomDialogTheme)
         builder.setTitle(title)
@@ -42,7 +42,7 @@ object UIUtil {
 
         val dialog: AlertDialog = builder.create()
         dialog.show()
-        dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(ContextCompat.getColor(context, R.color.light))
+        dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(ContextCompat.getColor(context, if (destroy) R.color.live else R.color.light))
         dialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(ContextCompat.getColor(context, R.color.dark))
     }
 

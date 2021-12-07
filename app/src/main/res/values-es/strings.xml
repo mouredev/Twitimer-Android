@@ -106,5 +106,8 @@
     <string name="settings.instagram.placeholder">Usuario de Instagram</string>
     <string name="settings.tiktok.placeholder">Usuario de TikTok</string>
     <string name="settings.savesettings">Guardar ajustes</string>
+    <string name="settings.deleteaccount.title">Eliminar cuenta</string>
+    <string name="settings.deleteaccount.button">Eliminar mi cuenta de Twitimer</string>
+    <string name="settings.deleteaccount.alert">Se eliminará tu cuenta de Twitimer y todos sus datos asociados. Tu cuenta de Twitch no se verá afectada.</string>
 
 </resources>

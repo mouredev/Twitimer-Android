@@ -109,7 +109,7 @@ object FirebaseRDBService {
             }.addOnFailureListener {
                 failure()
             }
-        }?: kotlin.run {
+        } ?: run {
             failure()
         }
     }
@@ -145,6 +145,23 @@ object FirebaseRDBService {
 
         user.login?.let { login ->
             (if (user.streamer == true) streamersRef else usersRef).child(login).child(DatabaseField.FOLLOWED_USERS.key).setValue(user.followedUsers)
+        }
+    }
+
+
+
+    fun delete(user: User, success: () -> Unit, failure: () -> Unit) {
+
+        user.login?.let { login ->
+            (if (user.streamer == true) streamersRef else usersRef).child(login).removeValue { error, _ ->
+                if (error != null) {
+                    failure()
+                } else {
+                    success()
+                }
+            }
+        } ?: run {
+            failure()
         }
     }
 

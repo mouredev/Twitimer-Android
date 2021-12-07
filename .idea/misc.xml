@@ -9,11 +9,24 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="../../../../../../../layout/custom_preview.xml" value="0.24895833333333334" />
+        <entry key="app/src/main/res/drawable/channel_button_round.xml" value="0.33918918918918917" />
+        <entry key="app/src/main/res/drawable/destroy_button_round.xml" value="0.33918918918918917" />
+        <entry key="app/src/main/res/drawable/discord.xml" value="0.33918918918918917" />
+        <entry key="app/src/main/res/drawable/primary_button_round.xml" value="0.33918918918918917" />
+        <entry key="app/src/main/res/drawable/secondary_button_round.xml" value="0.33918918918918917" />
         <entry key="app/src/main/res/layout/activity_menu.xml" value="0.32522522522522523" />
+        <entry key="app/src/main/res/layout/activity_settings.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/activity_user.xml" value="0.32522522522522523" />
+        <entry key="app/src/main/res/layout/countdown_fragment.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/info_fragment.xml" value="0.32522522522522523" />
+        <entry key="app/src/main/res/layout/onboarding_page_fragment.xml" value="0.32522522522522523" />
+        <entry key="app/src/main/res/layout/progress_bar_fragment.xml" value="0.15875109938434476" />
         <entry key="app/src/main/res/layout/schedule_item.xml" value="0.32522522522522523" />
         <entry key="app/src/main/res/layout/search_item.xml" value="0.32522522522522523" />
         <entry key="app/src/main/res/layout/timer_item.xml" value="0.32522522522522523" />
+        <entry key="app/src/main/res/layout/user_avatar_fragment.xml" value="0.15875109938434476" />
         <entry key="app/src/main/res/layout/user_fragment.xml" value="0.26306306306306304" />
+        <entry key="app/src/main/res/layout/user_header_fragment.xml" value="0.15875109938434476" />
       </map>
     </option>
   </component>

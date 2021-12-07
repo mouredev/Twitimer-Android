@@ -1,11 +1,7 @@
 package com.mouredev.twitimer.usecases.menu
 
-import android.graphics.Bitmap
-import android.graphics.drawable.BitmapDrawable
-import android.graphics.drawable.Drawable
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import com.mouredev.twitimer.R
 import com.mouredev.twitimer.databinding.ActivityMenuBinding

@@ -125,6 +125,17 @@ class Session {
         }
     }
 
+    fun delete(context: Context, success: () -> Unit) {
+
+        token?.accessToken?.let { accessToken ->
+            TwitchService.revoke(accessToken, {
+                remove(context, success)
+            }, {
+                remove(context, success)
+            })
+        }
+    }
+
     fun save(context: Context, schedule: MutableList<UserSchedule>) {
 
         val savedSchedule = savedSchedule(context)
@@ -507,6 +518,17 @@ class Session {
                 unsubscribeFromTopic("${topic}${subscribeLanguageType.code}")
                 unsubscribeFromTopic("${topic}${unsubscribeLanguageType.code}")
             }
+        }
+    }
+
+    private fun remove(context: Context, completion: (() -> Unit)) {
+
+        user?.let { user ->
+            FirebaseRDBService.delete(user, {
+                clear(context, completion)
+            }, {
+                clear(context, completion)
+            })
         }
     }
 
