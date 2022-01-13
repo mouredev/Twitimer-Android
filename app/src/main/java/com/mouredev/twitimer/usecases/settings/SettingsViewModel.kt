@@ -19,6 +19,9 @@ class SettingsViewModel : ViewModel() {
 
     // Localization
 
+    val holidayTitleText = R.string.settings_holiday_title
+    val holidayBodyText = R.string.settings_holiday_body
+    val holidayAlertText = R.string.settings_holiday_alert
     val socialMediaText = R.string.settings_socialmedia
     val discordPlaceholder = R.string.settings_discord_placeholder
     val youtubePlaceholder = R.string.settings_youtube_placeholder
@@ -36,25 +39,23 @@ class SettingsViewModel : ViewModel() {
 
     // Public
 
-    fun checkEnableSave(context: Context): Boolean {
+    fun close(context: SettingsActivity) {
 
-        val savedSettings = Session.instance.savedSettings(context)
-
-        if (savedSettings != settings) {
-            return true
+        Session.instance.revoke(context) {
+            context.onBackPressed()
         }
-        return  false
     }
 
     fun save(context: Context) {
         Session.instance.save(context, settings)
     }
 
-    fun close(context: SettingsActivity) {
+    fun enableSave(context: Context): Boolean {
+        return Session.instance.savedSettings(context) != settings
+    }
 
-        Session.instance.revoke(context) {
-            context.onBackPressed()
-        }
+    fun saveHolidays(context: Context): Boolean {
+        return settings.onHolidays == true && (settings.onHolidays != Session.instance.savedSettings(context)?.onHolidays)
     }
 
     fun restoreSaveSettings(context: Context) {

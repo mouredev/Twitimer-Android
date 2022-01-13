@@ -28,7 +28,7 @@ enum class DatabaseField(val key: String) {
     FOLLOWED_USERS("followedUsers"),
 
     // Settings
-    SETTINGS("settings"), DISCORD("discord"), YOUTUBE("youtube"), TWITTER("twitter"), INSTAGRAM("instagram"), TIKTOK("tiktok")
+    SETTINGS("settings"), ON_HOLIDAYS("onHolidays"), DISCORD("discord"), YOUTUBE("youtube"), TWITTER("twitter"), INSTAGRAM("instagram"), TIKTOK("tiktok")
 
 }
 

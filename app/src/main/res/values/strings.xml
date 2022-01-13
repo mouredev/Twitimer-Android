@@ -90,6 +90,13 @@
     <string name="info.schedule.body">The streamer does not have available schedules. He may not have added them Twitimer yet (or he may be on holidays).</string>
     <string name="info.schedule.advice.1">Try checking them out later. When the streamer has a schedule, a countdown will appear in the list of upcoming broadcasts.</string>
 
+    <string name="info.holiday.title">Holiday mode activated</string>
+    <string name="info.holiday.body">Holiday mode hides your broadcast schedules from your followers and notifies your audience.</string>
+    <string name="info.holiday.advice.1">Deactivate holiday mode from your user settings.</string>
+
+    <string name="info.userholidays.body">This user is on holidays. Schedules will be displayed at the moment that the streamer returns.</string>
+    <string name="info.userholidays.advice.1">If you have active notifications, you will receive a notification.</string>
+
     <!-- Menu -->
 
     <string name="menu.by">by</string>
@@ -101,6 +108,9 @@
 
     <!-- Settings -->
 
+    <string name="settings.holiday.title">Holiday mode</string>
+    <string name="settings.holiday.body">Holiday mode hides your broadcast schedules from your followers and notifies your audience.</string>
+    <string name="settings.holiday.alert">Do you want to activate the holiday mode? Your followers will be notified.</string>
     <string name="settings.socialmedia">Social media</string>
     <string name="settings.discord.placeholder">Discord invitation link code</string>
     <string name="settings.youtube.placeholder">YouTube user</string>

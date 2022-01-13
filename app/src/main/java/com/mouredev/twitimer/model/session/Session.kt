@@ -282,22 +282,25 @@ class Session {
 
             streamers.forEach { streamer ->
 
-                var nextSchedule: UserSchedule? = null
+                if (streamer.settings?.onHolidays == false) {
 
-                streamer.schedule?.forEach { schedule ->
+                    var nextSchedule: UserSchedule? = null
 
-                    if (schedule.enable) {
+                    streamer.schedule?.forEach { schedule ->
 
-                        val weekDate = schedule.weekDate()
+                        if (schedule.enable) {
 
-                        if ((nextSchedule == null && weekDate > currentDate) || (weekDate > currentDate && weekDate < nextSchedule!!.date)) {
-                            nextSchedule = schedule
+                            val weekDate = schedule.weekDate()
+
+                            if ((nextSchedule == null && weekDate > currentDate) || (weekDate > currentDate && weekDate < nextSchedule!!.date)) {
+                                nextSchedule = schedule
+                            }
                         }
                     }
-                }
 
-                nextSchedule?.let {
-                    sortedStreamings.add(SortedStreaming(streamer, it))
+                    nextSchedule?.let {
+                        sortedStreamings.add(SortedStreaming(streamer, it))
+                    }
                 }
             }
 

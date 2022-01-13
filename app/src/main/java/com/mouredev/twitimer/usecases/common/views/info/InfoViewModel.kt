@@ -12,7 +12,7 @@ import java.util.*
 
 
 enum class InfoViewType {
-    COUNTDOWN, SEARCH, CHANNEL, STREAMER, AUTH, SCHEDULE
+    COUNTDOWN, SEARCH, CHANNEL, STREAMER, AUTH, SCHEDULE, HOLIDAY, USER_HOLIDAYS
 }
 
 class InfoViewModel : ViewModel() {
@@ -33,6 +33,7 @@ class InfoViewModel : ViewModel() {
                 InfoViewType.STREAMER -> R.drawable.radio_microphone
                 InfoViewType.AUTH -> R.drawable.secure_connection
                 InfoViewType.SCHEDULE -> R.drawable.schedule
+                InfoViewType.HOLIDAY, InfoViewType.USER_HOLIDAYS -> R.drawable.vacation
             }
         }
 
@@ -45,6 +46,7 @@ class InfoViewModel : ViewModel() {
                 InfoViewType.STREAMER -> R.string.info_streamer_title
                 InfoViewType.AUTH -> R.string.info_auth_title
                 InfoViewType.SCHEDULE -> R.string.info_schedule_title
+                InfoViewType.HOLIDAY, InfoViewType.USER_HOLIDAYS -> R.string.info_holiday_title
             }
         }
 
@@ -57,6 +59,8 @@ class InfoViewModel : ViewModel() {
                 InfoViewType.STREAMER -> R.string.info_streamer_body
                 InfoViewType.AUTH -> R.string.info_auth_body
                 InfoViewType.SCHEDULE -> R.string.info_schedule_body
+                InfoViewType.HOLIDAY -> R.string.info_holiday_body
+                InfoViewType.USER_HOLIDAYS -> R.string.info_userholidays_body
             }
         }
 
@@ -68,15 +72,18 @@ class InfoViewModel : ViewModel() {
             InfoViewType.STREAMER -> R.string.info_streamer_advice_1
             InfoViewType.AUTH -> R.string.info_auth_advice_1
             InfoViewType.SCHEDULE -> R.string.info_schedule_advice_1
+            InfoViewType.HOLIDAY -> R.string.info_holiday_advice_1
+            InfoViewType.USER_HOLIDAYS -> R.string.info_userholidays_advice_1
         }
     }
 
     fun icon(number: Int): Int? {
         return when (type) {
             InfoViewType.SEARCH -> if (number == 1) R.drawable.calendar_add else R.drawable.calendar_remove
-            InfoViewType.CHANNEL -> R.drawable.megaphone
+            InfoViewType.CHANNEL, InfoViewType.USER_HOLIDAYS -> R.drawable.megaphone
             InfoViewType.STREAMER -> R.drawable.calendar
             InfoViewType.SCHEDULE -> R.drawable.time_clock_circle
+            InfoViewType.HOLIDAY -> R.drawable.settings
             InfoViewType.COUNTDOWN, InfoViewType.AUTH -> null
         }
     }

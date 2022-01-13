@@ -18,6 +18,7 @@ class UserViewModel : ViewModel() {
     private var user: User? = null // Read only user
     val readOnly get() = user != null
     val isStreamer get() = getUser()?.streamer ?: false
+    val onHolidays get() = getUser()?.settings?.onHolidays ?: false
 
     // Localization
 

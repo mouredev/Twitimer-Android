@@ -76,7 +76,7 @@ data class User(
         return scheduleJSON
     }
 
-    fun settingsToJSON(): MutableMap<String, String> {
+    fun settingsToJSON(): MutableMap<String, Any> {
         return settings?.toJSON() ?: mutableMapOf()
     }
 
@@ -280,6 +280,7 @@ enum class WeekdayType(val index: Int) {
 }
 
 data class UserSettings(
+    var onHolidays: Boolean? = null,
     var discord: String? = null,
     var youtube: String? = null,
     var twitter: String? = null,
@@ -287,9 +288,10 @@ data class UserSettings(
     var tiktok: String? = null
 ) {
 
-    fun toJSON(): MutableMap<String, String> {
+    fun toJSON(): MutableMap<String, Any> {
 
         return mutableMapOf(
+            DatabaseField.ON_HOLIDAYS.key to (if (onHolidays == true) 1 else 0),
             DatabaseField.DISCORD.key to (discord ?: ""),
             DatabaseField.YOUTUBE.key to (youtube ?: ""),
             DatabaseField.TWITTER.key to (twitter ?: ""),

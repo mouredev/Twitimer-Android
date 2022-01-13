@@ -60,6 +60,8 @@ class SettingsActivity : AppCompatActivity() {
 
     private fun localize() {
 
+        binding.textViewHolidayMode.text = getText(viewModel.holidayTitleText)
+        binding.textViewHolidayModeDetail.text = getText(viewModel.holidayBodyText)
         binding.textViewSocialMedia.text = getText(viewModel.socialMediaText)
         binding.editTextDiscord.hint = getText(viewModel.discordPlaceholder)
         binding.editTextYouTube.hint = getText(viewModel.youtubePlaceholder)
@@ -78,12 +80,29 @@ class SettingsActivity : AppCompatActivity() {
         // Header
         addClose()
 
+        // Holiday mode
+        setupHolidayMode()
+
         // Social media
         setupSocialMedia()
 
         // Footer
         setupFooter()
 
+    }
+
+    private fun setupHolidayMode() {
+
+        // Holiday mode
+
+        binding.textViewHolidayMode.font(FontSize.HEAD, color = ContextCompat.getColor(this, R.color.text))
+        binding.textViewHolidayModeDetail.font(FontSize.SUBHEAD, color = ContextCompat.getColor(this, R.color.text))
+
+        binding.switchHolidayMode.isChecked = viewModel.settings.onHolidays == true
+        binding.switchHolidayMode.setOnCheckedChangeListener { _, isChecked ->
+            viewModel.settings.onHolidays = isChecked
+            checkEnableSave()
+        }
     }
 
     private fun setupSocialMedia() {
@@ -284,8 +303,13 @@ class SettingsActivity : AppCompatActivity() {
         binding.buttonSaveSettings.enable(false)
         binding.buttonSaveSettings.primary {
             hideSoftInput()
-            viewModel.save(this)
-            binding.buttonSaveSettings.enable(false)
+            if (viewModel.saveHolidays(this)) {
+                UIUtil.showAlert(this, getString(viewModel.holidayTitleText), getString(viewModel.holidayAlertText), getString(viewModel.okText), {
+                    save()
+                }, getString(viewModel.cancelText), true)
+            } else {
+                save()
+            }
             currentEditText?.clearFocus()
         }
     }
@@ -315,8 +339,12 @@ class SettingsActivity : AppCompatActivity() {
     }
 
     private fun checkEnableSave() {
-        binding.buttonSaveSettings.enable(viewModel.checkEnableSave(this))
+        binding.buttonSaveSettings.enable(viewModel.enableSave(this))
     }
 
+    private fun save() {
+        viewModel.save(this)
+        binding.buttonSaveSettings.enable(false)
+    }
 
 }
