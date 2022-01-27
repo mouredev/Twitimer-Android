@@ -19,6 +19,9 @@ class SettingsViewModel : ViewModel() {
 
     // Localization
 
+    val holidayTitleText = R.string.settings_holiday_title
+    val holidayBodyText = R.string.settings_holiday_body
+    val holidayAlertText = R.string.settings_holiday_alert
     val socialMediaText = R.string.settings_socialmedia
     val discordPlaceholder = R.string.settings_discord_placeholder
     val youtubePlaceholder = R.string.settings_youtube_placeholder
@@ -28,24 +31,13 @@ class SettingsViewModel : ViewModel() {
     val closeText = R.string.user_closesession
     val closeAlertText = R.string.user_closesession_alert_body
     val saveText = R.string.settings_savesettings
+    val deleteTitleText = R.string.settings_deleteaccount_title
+    val deleteButtonText = R.string.settings_deleteaccount_button
+    val deleteAlertText = R.string.settings_deleteaccount_alert
     val okText = R.string.accept
     val cancelText = R.string.cancel
 
     // Public
-
-    fun checkEnableSave(context: Context): Boolean {
-
-        val savedSettings = Session.instance.savedSettings(context)
-
-        if (savedSettings != settings) {
-            return true
-        }
-        return  false
-    }
-
-    fun save(context: Context) {
-        Session.instance.save(context, settings)
-    }
 
     fun close(context: SettingsActivity) {
 
@@ -54,8 +46,27 @@ class SettingsViewModel : ViewModel() {
         }
     }
 
+    fun save(context: Context) {
+        Session.instance.save(context, settings)
+    }
+
+    fun enableSave(context: Context): Boolean {
+        return Session.instance.savedSettings(context) != settings
+    }
+
+    fun saveHolidays(context: Context): Boolean {
+        return settings.onHolidays == true && (settings.onHolidays != Session.instance.savedSettings(context)?.onHolidays)
+    }
+
     fun restoreSaveSettings(context: Context) {
         Session.instance.user?.settings = Session.instance.savedSettings(context)
+    }
+
+    fun delete(context: SettingsActivity) {
+
+        Session.instance.delete(context) {
+            context.onBackPressed()
+        }
     }
 
 }

@@ -59,6 +59,8 @@
     <string name="user.streamer">I\'m a streamer</string>
     <string name="user.syncschedule.alert.title">Synchronize Twitch schedule</string>
     <string name="user.syncschedule.alert.body">Do you want to sync your recurring Twitch calendar? The Twitimer schedule will be overwritten.</string>
+    <string name="user.scheduleinfo.alert.title">Schedules synchronization</string>
+    <string name="user.scheduleinfo.alert.body">The schedules saved from Twitimer will not overwrite those of Twitch to avoid interfering with the platform and allow you to manage them in a more intuitive and agile way.</string>
 
     <!-- Info -->
 
@@ -88,6 +90,13 @@
     <string name="info.schedule.body">The streamer does not have available schedules. He may not have added them Twitimer yet (or he may be on holidays).</string>
     <string name="info.schedule.advice.1">Try checking them out later. When the streamer has a schedule, a countdown will appear in the list of upcoming broadcasts.</string>
 
+    <string name="info.holiday.title">Holiday mode activated</string>
+    <string name="info.holiday.body">Holiday mode hides your broadcast schedules from your followers and notifies your audience.</string>
+    <string name="info.holiday.advice.1">Deactivate holiday mode from your user settings.</string>
+
+    <string name="info.userholidays.body">This user is on holidays. Schedules will be displayed at the moment that the streamer returns.</string>
+    <string name="info.userholidays.advice.1">If you have active notifications, you will receive a notification.</string>
+
     <!-- Menu -->
 
     <string name="menu.by">by</string>
@@ -99,6 +108,9 @@
 
     <!-- Settings -->
 
+    <string name="settings.holiday.title">Holiday mode</string>
+    <string name="settings.holiday.body">Holiday mode hides your broadcast schedules from your followers and notifies your audience.</string>
+    <string name="settings.holiday.alert">Do you want to activate the holiday mode? Your followers will be notified.</string>
     <string name="settings.socialmedia">Social media</string>
     <string name="settings.discord.placeholder">Discord invitation link code</string>
     <string name="settings.youtube.placeholder">YouTube user</string>
@@ -106,5 +118,8 @@
     <string name="settings.instagram.placeholder">Instagram user</string>
     <string name="settings.tiktok.placeholder">TikTok user</string>
     <string name="settings.savesettings">Save settings</string>
+    <string name="settings.deleteaccount.title">Delete account</string>
+    <string name="settings.deleteaccount.button">Delete my Twitimer account</string>
+    <string name="settings.deleteaccount.alert">Your Twitimer account and all their associated data will be deleted. Your Twitch account will not be affected.</string>
 
 </resources>

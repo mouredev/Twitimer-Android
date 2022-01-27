@@ -88,6 +88,7 @@ class SearchQueryRecyclerViewAdapter(val context: Context, var users: List<UserS
         val padding12 = Util.dpToPixel(context, Size.SMALL_MEDIUM.size + Size.EXTRA_SMALL.size).toInt()
         binding.imageViewCalendar.setPadding(padding10, padding10, padding12, padding12)
         binding.imageViewCalendar.isEnabled = false
+        binding.imageViewHoliday.visibility = View.GONE
 
         return viewHolder
     }

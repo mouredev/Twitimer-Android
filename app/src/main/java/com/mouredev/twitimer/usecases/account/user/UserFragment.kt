@@ -37,6 +37,8 @@ class UserFragment : Fragment() {
     private lateinit var viewModel: UserViewModel
     private var infoFragment: InfoFragment? = null
 
+    private var schedules: MutableList<UserSchedule>? = null
+
     // Initialization
 
     override fun onCreateView(
@@ -75,7 +77,7 @@ class UserFragment : Fragment() {
         super.onResume()
 
         // Setup
-        setupHeader()
+        setupContent()
     }
 
     // Private
@@ -89,15 +91,7 @@ class UserFragment : Fragment() {
 
     private fun setup() {
 
-        val transaction = activity?.supportFragmentManager?.beginTransaction()
-
-        val schedules = viewModel.getFilterSchedule()
-        infoFragment = if (schedules.isNullOrEmpty()) InfoRouter().fragment(InfoViewType.SCHEDULE) else InfoRouter().fragment(InfoViewType.STREAMER)
-        infoFragment?.let {
-            transaction?.replace(R.id.frameLayoutInfo, it)
-        }
-        transaction?.disallowAddToBackStack()
-        transaction?.commit()
+        schedules = viewModel.getFilterSchedule()
 
         context?.let { context ->
 
@@ -116,9 +110,12 @@ class UserFragment : Fragment() {
                 binding.switchStreamer.setOnCheckedChangeListener { _, isChecked ->
                     if (viewModel.isStreamer != isChecked) {
                         viewModel.save(context, isChecked)
-                        setupBody(schedules)
-                        setupHeader()
-                        setupButtons()
+                        setupContent()
+                        if (isChecked) {
+                            UIUtil.showAlert(context, getString(viewModel.syncInfoAlertTitleText), getString(viewModel.syncInfoAlertBodyText), getString(viewModel.okText), {
+                                checkShowScheduleAlert(context)
+                            })
+                        }
                     }
                 }
 
@@ -139,20 +136,11 @@ class UserFragment : Fragment() {
                 // Recycler view
 
                 binding.recyclerViewSchedule.layoutManager = LinearLayoutManager(context)
-                binding.recyclerViewSchedule.adapter = ScheduleRecyclerViewAdapter(context, schedules, viewModel.readOnly) { schedule ->
+                binding.recyclerViewSchedule.adapter = ScheduleRecyclerViewAdapter(context, schedules!!, viewModel.readOnly) { schedule ->
                     checkEnableSave(context, schedule)
                 }
             }
-
-            // Sync
-            if (viewModel.isStreamer && !viewModel.readOnly && !viewModel.firstSync(context)) {
-                PreferencesProvider.set(context, PreferencesKey.FIRST_SYNC, true)
-                syncSchedule(context)
-            }
         }
-
-        setupBody(schedules)
-        setupButtons()
     }
 
     private fun setupHeader() {
@@ -165,20 +153,48 @@ class UserFragment : Fragment() {
         transaction?.commit()
     }
 
-    private fun setupBody(schedule: List<UserSchedule>?) {
+    private fun setupContent() {
+
+        setupHeader()
+        setupInfo()
+        setupBody()
+        setupButtons()
+    }
+
+    private fun setupInfo() {
+
+        val transaction = activity?.supportFragmentManager?.beginTransaction()
+
+        if (!viewModel.isStreamer) {
+            infoFragment = InfoRouter().fragment(InfoViewType.STREAMER)
+        } else if (viewModel.onHolidays) {
+            infoFragment = if (viewModel.readOnly) InfoRouter().fragment(InfoViewType.USER_HOLIDAYS) else InfoRouter().fragment(InfoViewType.HOLIDAY)
+        } else if (schedules.isNullOrEmpty()) {
+            infoFragment = InfoRouter().fragment(InfoViewType.SCHEDULE)
+        }
+
+        infoFragment?.let {
+            transaction?.replace(R.id.frameLayoutInfo, it)
+        }
+        transaction?.disallowAddToBackStack()
+        transaction?.commit()
+    }
+
+    private fun setupBody() {
 
         binding.imageButtonSync.visibility = View.GONE
+        binding.textViewSchedule.visibility = View.VISIBLE
 
         if (viewModel.isStreamer) {
             binding.switchStreamer.isChecked = true
-            if (viewModel.readOnly && schedule.isNullOrEmpty()) {
+            if (viewModel.onHolidays || (viewModel.readOnly && schedules.isNullOrEmpty())) {
                 infoFragment?.view?.visibility = View.VISIBLE
                 binding.recyclerViewSchedule.visibility = View.GONE
             } else {
                 infoFragment?.view?.visibility = View.GONE
                 binding.recyclerViewSchedule.visibility = View.VISIBLE
             }
-            if (!viewModel.readOnly) {
+            if (!viewModel.onHolidays && !viewModel.readOnly) {
                 binding.imageButtonSync.visibility = View.VISIBLE
             }
         } else {
@@ -191,13 +207,17 @@ class UserFragment : Fragment() {
             binding.textViewStreamer.visibility = View.GONE
             binding.switchStreamer.visibility = View.GONE
         }
+
+        if (viewModel.onHolidays || !viewModel.isStreamer) {
+            binding.textViewSchedule.visibility = View.INVISIBLE
+        }
     }
 
     private fun setupButtons() {
 
         binding.buttonSaveSchedule.visibility = if (viewModel.isStreamer) View.VISIBLE else View.GONE
 
-        if (viewModel.readOnly) {
+        if (viewModel.onHolidays || viewModel.readOnly) {
             binding.layoutButtons.visibility = View.GONE
         }
     }
@@ -227,6 +247,15 @@ class UserFragment : Fragment() {
 
     private fun checkEnableSave(context: Context, schedule: UserSchedule) {
         binding.buttonSaveSchedule.enable(viewModel.checkEnableSave(context, schedule))
+    }
+
+    private fun checkShowScheduleAlert(context: Context) {
+
+        // Sync
+        if (viewModel.isStreamer && !viewModel.readOnly && !viewModel.firstSync(context)) {
+            PreferencesProvider.set(context, PreferencesKey.FIRST_SYNC, true)
+            syncSchedule(context)
+        }
     }
 
 }

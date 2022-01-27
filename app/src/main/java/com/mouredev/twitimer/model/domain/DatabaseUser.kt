@@ -56,6 +56,8 @@ data class DatabaseUserSchedule(
 }
 
 data class DatabaseUserSettings(
+
+    var onHolidays: Int? = null,
     val discord: String? = null,
     val youtube: String? = null,
     val twitter: String? = null,
@@ -64,7 +66,7 @@ data class DatabaseUserSettings(
 ) {
 
     fun toUserSettings(): UserSettings {
-        return UserSettings(discord, youtube, twitter, instagram, tiktok)
+        return UserSettings(onHolidays == 1, discord, youtube, twitter, instagram, tiktok)
     }
 
 }

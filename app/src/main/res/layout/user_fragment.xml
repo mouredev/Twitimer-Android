@@ -68,7 +68,7 @@
             android:theme="@style/CustomSwitchStyle"
             app:layout_constraintBottom_toBottomOf="@+id/textViewStreamer"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/textViewSchedule" />
+            app:layout_constraintTop_toTopOf="@+id/textViewStreamer" />
 
         <LinearLayout
             android:layout_width="match_parent"

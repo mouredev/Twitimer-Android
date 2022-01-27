@@ -125,6 +125,17 @@ class Session {
         }
     }
 
+    fun delete(context: Context, success: () -> Unit) {
+
+        token?.accessToken?.let { accessToken ->
+            TwitchService.revoke(accessToken, {
+                remove(context, success)
+            }, {
+                remove(context, success)
+            })
+        }
+    }
+
     fun save(context: Context, schedule: MutableList<UserSchedule>) {
 
         val savedSchedule = savedSchedule(context)
@@ -178,6 +189,9 @@ class Session {
                 user?.followedUsers = mutableListOf()
             }
             user?.followedUsers?.add(login)
+            if (streamers == null) {
+                streamers = mutableListOf()
+            }
             streamers?.add(followedUser)
 
             setupNotification(true, login)
@@ -268,22 +282,25 @@ class Session {
 
             streamers.forEach { streamer ->
 
-                var nextSchedule: UserSchedule? = null
+                if (streamer.settings?.onHolidays == false) {
 
-                streamer.schedule?.forEach { schedule ->
+                    var nextSchedule: UserSchedule? = null
 
-                    if (schedule.enable) {
+                    streamer.schedule?.forEach { schedule ->
 
-                        val weekDate = schedule.weekDate()
+                        if (schedule.enable) {
 
-                        if ((nextSchedule == null && weekDate > currentDate) || (weekDate > currentDate && weekDate < nextSchedule!!.date)) {
-                            nextSchedule = schedule
+                            val weekDate = schedule.weekDate()
+
+                            if ((nextSchedule == null && weekDate > currentDate) || (weekDate > currentDate && weekDate < nextSchedule!!.date)) {
+                                nextSchedule = schedule
+                            }
                         }
                     }
-                }
 
-                nextSchedule?.let {
-                    sortedStreamings.add(SortedStreaming(streamer, it))
+                    nextSchedule?.let {
+                        sortedStreamings.add(SortedStreaming(streamer, it))
+                    }
                 }
             }
 
@@ -504,6 +521,17 @@ class Session {
                 unsubscribeFromTopic("${topic}${subscribeLanguageType.code}")
                 unsubscribeFromTopic("${topic}${unsubscribeLanguageType.code}")
             }
+        }
+    }
+
+    private fun remove(context: Context, completion: (() -> Unit)) {
+
+        user?.let { user ->
+            FirebaseRDBService.delete(user, {
+                clear(context, completion)
+            }, {
+                clear(context, completion)
+            })
         }
     }
 

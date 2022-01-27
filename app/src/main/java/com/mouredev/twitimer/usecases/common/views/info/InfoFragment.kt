@@ -151,6 +151,17 @@ class InfoFragment : Fragment() {
             }
             InfoViewType.AUTH ->
                 binding.linearLayoutFooter.visibility = View.GONE
+
+            InfoViewType.HOLIDAY, InfoViewType.USER_HOLIDAYS -> {
+                binding.buttonAction.visibility = View.GONE
+                binding.textViewFooterFirst.text = getString(viewModel.advice(1))
+                context?.let { context ->
+                    viewModel.icon(1)?.let { icon ->
+                        binding.imageViewFooterFirst.setImageDrawable(ContextCompat.getDrawable(context, icon))
+                    }
+                    binding.linearLayoutFooterSecond.visibility = View.GONE
+                }
+            }
         }
     }
 
