@@ -282,7 +282,7 @@ class Session {
 
             streamers.forEach { streamer ->
 
-                if (streamer.settings?.onHolidays == false) {
+                if (streamer.settings?.onHolidays != true) {
 
                     var nextSchedule: UserSchedule? = null
 
