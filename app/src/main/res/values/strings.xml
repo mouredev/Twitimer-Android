@@ -55,7 +55,6 @@
     <string name="user.closesession">Log out</string>
     <string name="user.closesession.alert.body">Are you sure you want to log out?</string>
     <string name="user.saveschedule.alert.body">If you save these new schedules, your viewers will be notified.</string>
-    <string name="user.seechannel">See channel</string>
     <string name="user.streamer">I\'m a streamer</string>
     <string name="user.syncschedule.alert.title">Synchronize Twitch schedule</string>
     <string name="user.syncschedule.alert.body">Do you want to sync your recurring Twitch calendar? The Twitimer schedule will be overwritten.</string>

@@ -64,21 +64,14 @@ class ChannelButtonFragment : Fragment() {
         }
 
         // Setup
-        localize()
         setup()
     }
 
     // Private
 
-    private fun localize() {
-
-        binding.textViewChannelTitle.text = getText(R.string.user_seechannel)
-    }
-
     private fun setup() {
 
         context?.let { context ->
-            binding.textViewChannelTitle.font(FontSize.CAPTION, FontType.LIGHT, ContextCompat.getColor(context, R.color.light))
             binding.buttonChannel.background = ContextCompat.getDrawable(context, if (darkBackground == true) R.drawable.channel_button_round_dark else R.drawable.channel_button_round)
 
             binding.buttonChannel.setOnClickListener {

@@ -35,6 +35,7 @@ enum class Size(val size: Int) {
     SMALL(8),
     SMALL_MEDIUM(10),
     MEDIUM(16),
+    MEDIUM_HALF_BIG(20),
     MEDIUM_BIG(24),
     BIG(32),
     VERY_BIG(40),

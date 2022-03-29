@@ -122,10 +122,6 @@ class SearchRecyclerViewAdapter(val context: Context, var users: List<User>, val
         binding.textViewUser.font(FontSize.BUTTON, FontType.BOLD, ContextCompat.getColor(context, R.color.light))
         binding.textViewUser.maxLines = 2
         binding.buttonChannel.background = ContextCompat.getDrawable(context, R.drawable.channel_button_round_dark)
-        binding.textViewChannelTitle.font(FontSize.CAPTION, FontType.LIGHT, ContextCompat.getColor(context, R.color.light))
-
-        // Localize
-        binding.textViewChannelTitle.text = context.getText(R.string.user_seechannel)
 
         return viewHolder
     }

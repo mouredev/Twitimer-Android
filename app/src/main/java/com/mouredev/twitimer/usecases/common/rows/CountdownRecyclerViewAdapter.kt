@@ -119,10 +119,7 @@ class CountdownRecyclerViewAdapter(val context: Context, var streamings: List<So
         binding.textViewInfo.font(FontSize.CAPTION, color = ContextCompat.getColor(context, R.color.light))
         binding.textViewTimer.font(FontSize.SUBHEAD, FontType.BOLD, ContextCompat.getColor(context, R.color.light))
         binding.textViewHours.font(FontSize.SUBHEAD, FontType.BOLD, ContextCompat.getColor(context, R.color.light))
-        binding.textViewChannelTitle.font(FontSize.CAPTION, FontType.LIGHT, ContextCompat.getColor(context, R.color.light))
 
-        // Localize
-        binding.textViewChannelTitle.text = context.getText(R.string.user_seechannel)
         binding.textViewTimer.text = ""
         binding.textViewHours.text = ""
 

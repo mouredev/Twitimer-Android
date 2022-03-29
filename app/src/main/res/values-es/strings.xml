@@ -55,7 +55,6 @@
     <string name="user.closesession">Cerrar sesión</string>
     <string name="user.closesession.alert.body">¿Estás seguro de que quieres cerrar sesión?</string>
     <string name="user.saveschedule.alert.body">Si guardas estos nuevos horarios se notificará a tus espectadores.</string>
-    <string name="user.seechannel">Ver canal</string>
     <string name="user.streamer">Soy streamer</string>
     <string name="user.syncschedule.alert.title">Sincronizar horario de Twitch</string>
     <string name="user.syncschedule.alert.body">¿Quieres sincronizar tu calendario recurrente de Twitch? Se sobrescribirá la programación de Twitimer.</string>

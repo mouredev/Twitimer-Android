@@ -53,29 +53,19 @@
 
                 <LinearLayout
                     android:id="@+id/buttonChannel"
-                    tools:context=".usecases.common.controls.ChannelButtonFragment"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@drawable/channel_button_round_dark"
                     android:gravity="center_vertical"
-                    android:paddingStart="8dp"
-                    android:paddingTop="4dp"
-                    android:paddingEnd="10dp"
-                    android:paddingBottom="6dp">
-
-                    <TextView
-                        android:id="@+id/textViewChannelTitle"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/user.seechannel"
-                        android:textAllCaps="false"
-                        android:textColor="@color/light"
-                        android:textSize="12sp" />
+                    android:paddingStart="5dp"
+                    android:paddingTop="6dp"
+                    android:paddingEnd="7dp"
+                    android:paddingBottom="6dp"
+                    tools:context=".usecases.common.controls.ChannelButtonFragment">
 
                     <ImageView
-                        android:layout_width="16dp"
-                        android:layout_height="16dp"
-                        android:layout_marginStart="8dp"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
                         android:src="@drawable/twitch"
                         app:tint="@color/light" />
 

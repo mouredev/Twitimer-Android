@@ -92,10 +92,11 @@ class UserHeaderFragment : Fragment() {
         context?.let { context ->
 
             if (small) {
-                binding.textViewUser.font(FontSize.HEAD, color = ContextCompat.getColor(context, R.color.light))
+                binding.textViewUser.font(FontSize.BUTTON, FontType.BOLD, color = ContextCompat.getColor(context, R.color.light))
+                binding.textViewUser.maxLines = 2
                 binding.textViewUsername.visibility = View.GONE
             } else {
-                binding.textViewUser.font(FontSize.TITLE, color = ContextCompat.getColor(context, R.color.light))
+                binding.textViewUser.font(FontSize.SUBTITLE, FontType.BOLD, color = ContextCompat.getColor(context, R.color.light))
                 binding.textViewUsername.font(FontSize.BODY, FontType.LIGHT, ContextCompat.getColor(context, R.color.light))
             }
         }
