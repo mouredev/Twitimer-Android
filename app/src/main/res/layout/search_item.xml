@@ -44,6 +44,14 @@
                 android:orientation="horizontal"
                 android:paddingStart="16dp">
 
+                <ImageView
+                    android:id="@+id/imageViewHoliday"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginEnd="8dp"
+                    app:srcCompat="@drawable/holiday"
+                    app:tint="@color/light" />
+
                 <TextView
                     android:id="@+id/textViewUser"
                     android:layout_width="wrap_content"
@@ -52,24 +60,11 @@
                     android:maxLines="2"
                     android:text="User" />
 
-                <ImageView
-                    android:id="@+id/imageViewHoliday"
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:layout_marginStart="8dp"
-                    android:layout_weight="0"
-                    app:srcCompat="@drawable/holiday"
-                    app:tint="@color/light" />
-
-                <Space
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0" />
-
                 <LinearLayout
                     android:id="@+id/buttonChannel"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
                     android:layout_weight="0"
                     android:background="@drawable/channel_button_round"
                     android:gravity="center_vertical"
